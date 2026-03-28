@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — K.S. Enterprises</title>
+<meta name="description" content="Browse all electrical and home services in Navi Mumbai. Transparent pricing, verified workers, instant booking." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold:#FACC15; --gold-dark:#EAB308; --gold-glow:rgba(250,204,21,0.15);
+    --wa:#25D366; --wa-dark:#1da851;
+    --radius:14px; --radius-sm:9px; --radius-pill:100px;
+    --transition:0.22s ease;
+  }
+  [data-theme="dark"] {
+    --bg:#090D19; --bg2:#0F1525; --bg3:#161D30; --bg4:#1E2740;
+    --border:rgba(255,255,255,0.07); --border-gold:rgba(250,204,21,0.22);
+    --text:#F0F4FF; --text2:#94A3B8; --text3:#5A6A85;
+    --card-bg:#0F1525; --nav-bg:rgba(9,13,25,0.9);
+  }
+  [data-theme="light"] {
+    --bg:#F5F7FF; --bg2:#FFFFFF; --bg3:#EDF0FB; --bg4:#E2E8F0;
+    --border:rgba(0,0,0,0.08); --border-gold:rgba(202,138,4,0.3);
+    --text:#0F172A; --text2:#475569; --text3:#94A3B8;
+    --card-bg:#FFFFFF; --nav-bg:rgba(245,247,255,0.92);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background var(--transition),color var(--transition);}
+  a{text-decoration:none;color:inherit;}
+
+  /* NAVBAR */
+  .navbar{position:fixed;top:0;left:0;right:0;z-index:999;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:var(--nav-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--border-gold);transition:background var(--transition);}
+  .nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer;}
+  .nav-logo-box{width:38px;height:38px;border-radius:9px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .nav-logo-text{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--text);letter-spacing:-0.4px;}
+  .nav-logo-text span{color:var(--gold);}
+  .nav-links{display:flex;align-items:center;gap:2px;}
+  .nav-link{padding:8px 13px;border-radius:8px;font-size:14px;font-weight:500;color:var(--text2);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color var(--transition),background var(--transition);}
+  .nav-link:hover{color:var(--text);background:var(--bg3);}
+  .nav-link.active{color:var(--gold);}
+  .nav-right{display:flex;align-items:center;gap:10px;}
+  .theme-toggle{width:40px;height:40px;border-radius:9px;border:1px solid var(--border);background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;transition:background var(--transition);}
+  .theme-toggle:hover{background:var(--bg4);}
+  .nav-cta{padding:9px 20px;border-radius:9px;background:var(--gold);color:#0F172A;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background var(--transition),transform 0.15s;}
+  .nav-cta:hover{background:var(--gold-dark);transform:translateY(-1px);}
+  .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:8px;background:none;border:none;}
+  .nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;}
+  .mobile-menu{display:none;position:fixed;top:66px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px 20px;z-index:998;flex-direction:column;gap:4px;}
+  .mobile-menu.open{display:flex;}
+  .mobile-link{padding:12px 14px;border-radius:9px;font-size:15px;font-weight:500;color:var(--text2);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;text-align:left;transition:background var(--transition),color var(--transition);}
+  .mobile-link:hover{background:var(--bg3);color:var(--text);}
+
+  /* PAGE HEADER */
+  .page-header{padding:120px 28px 60px;background:var(--bg);position:relative;overflow:hidden;}
+  .page-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(250,204,21,0.06) 0%,transparent 70%);pointer-events:none;}
+  .page-header-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+  .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text3);margin-bottom:20px;}
+  .breadcrumb a{color:var(--text3);cursor:pointer;transition:color var(--transition);}
+  .breadcrumb a:hover{color:var(--gold);}
+  .breadcrumb-sep{color:var(--text3);}
+  .page-title{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;letter-spacing:-1px;color:var(--text);margin-bottom:14px;line-height:1.1;}
+  .page-title span{color:var(--gold);}
+  .page-sub{font-size:17px;color:var(--text2);line-height:1.7;max-width:520px;}
+
+  /* FILTER BAR */
+  .filter-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 28px;position:sticky;top:66px;z-index:90;}
+  .filter-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:8px;overflow-x:auto;padding:14px 0;scrollbar-width:none;}
+  .filter-inner::-webkit-scrollbar{display:none;}
+  .filter-btn{padding:8px 18px;border-radius:var(--radius-pill);font-size:14px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all var(--transition);}
+  .filter-btn:hover{border-color:var(--border-gold);color:var(--gold);}
+  .filter-btn.active{background:var(--gold);color:#0A0E1A;border-color:var(--gold);font-weight:700;}
+
+  /* SECTION */
+  .section{padding:72px 28px;}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-label{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .section-label::before{content:'';display:block;width:18px;height:2px;background:var(--gold);border-radius:2px;}
+  .section-title{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.6px;color:var(--text);margin-bottom:36px;line-height:1.15;}
+  .section-title span{color:var(--gold);}
+
+  /* SERVICE DETAIL CARDS */
+  .services-list{display:flex;flex-direction:column;gap:20px;}
+  .service-detail-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:28px 28px;display:grid;grid-template-columns:72px 1fr auto;gap:24px;align-items:center;transition:border-color var(--transition),transform 0.2s;cursor:pointer;}
+  .service-detail-card:hover{border-color:var(--border-gold);transform:translateX(4px);}
+  .sdc-icon{width:72px;height:72px;border-radius:16px;background:var(--gold-glow);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+  .sdc-body{}
+  .sdc-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .sdc-desc{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px;max-width:560px;}
+  .sdc-tags{display:flex;flex-wrap:wrap;gap:7px;}
+  .sdc-tag{padding:4px 12px;border-radius:var(--radius-pill);background:var(--bg3);border:1px solid var(--border);font-size:12px;font-weight:500;color:var(--text2);}
+  .sdc-right{display:flex;flex-direction:column;align-items:flex-end;gap:14px;flex-shrink:0;}
+  .sdc-price-label{font-size:12px;color:var(--text3);text-align:right;}
+  .sdc-price{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--gold);line-height:1;}
+  .sdc-book-btn{padding:11px 22px;border-radius:9px;background:var(--gold);color:#0A0E1A;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background var(--transition),transform 0.15s;}
+  .sdc-book-btn:hover{background:var(--gold-dark);transform:translateY(-1px);}
+  .sdc-avail{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#4ADE80;}
+  .avail-dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;animation:pulse-dot 1.8s ease-in-out infinite;}
+  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+
+  /* PRICING NOTE */
+  .pricing-note{background:var(--bg3);border:1px solid var(--border-gold);border-radius:var(--radius);padding:20px 24px;display:flex;align-items:center;gap:14px;margin-bottom:32px;}
+  .pn-icon{font-size:22px;flex-shrink:0;}
+  .pn-text{font-size:14px;color:var(--text2);line-height:1.6;}
+  .pn-text strong{color:var(--text);font-weight:600;}
+
+  /* EMERGENCY BANNER */
+  .emergency-banner{background:linear-gradient(135deg,rgba(239,68,68,0.12),rgba(239,68,68,0.05));border:1px solid rgba(239,68,68,0.25);border-radius:var(--radius);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:48px;}
+  .eb-left{}
+  .eb-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#F87171;margin-bottom:8px;}
+  .eb-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px;}
+  .eb-desc{font-size:14px;color:var(--text2);}
+  .btn-red{padding:12px 24px;border-radius:9px;background:#EF4444;color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:background var(--transition);}
+  .btn-red:hover{background:#DC2626;}
+
+  /* HOW PRICING WORKS */
+  .pricing-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:16px;}
+  .ps-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;}
+  .ps-num{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);margin-bottom:10px;letter-spacing:0.5px;}
+  .ps-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:6px;}
+  .ps-desc{font-size:13px;color:var(--text2);line-height:1.65;}
+
+  /* FLOATING WA */
+  .wa-float{position:fixed;bottom:26px;right:26px;z-index:900;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;box-shadow:0 8px 24px rgba(37,211,102,0.4);transition:transform 0.2s;text-decoration:none;animation:wa-bounce 5s ease-in-out infinite;}
+  .wa-float:hover{transform:scale(1.1);animation:none;}
+  @keyframes wa-bounce{0%,90%,100%{transform:translateY(0);}93%{transform:translateY(-8px);}96%{transform:translateY(-4px);}}
+
+  /* FOOTER */
+  .footer{background:var(--bg2);border-top:1px solid var(--border);padding:40px 28px 28px;}
+  .footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .footer-logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text);}
+  .footer-logo span{color:var(--gold);}
+  .footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .footer-link{font-size:13px;color:var(--text3);cursor:pointer;transition:color var(--transition);}
+  .footer-link:hover{color:var(--gold);}
+  .footer-copy{font-size:13px;color:var(--text3);}
+
+  /* FADE UP */
+  .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.5s ease,transform 0.5s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+
+  @media(max-width:768px){
+    .page-title{font-size:30px;}
+    .service-detail-card{grid-template-columns:56px 1fr;gap:16px;}
+    .sdc-right{flex-direction:row;align-items:center;grid-column:1/-1;}
+    .sdc-icon{width:56px;height:56px;font-size:24px;}
+    .pricing-steps{grid-template-columns:1fr;}
+    .emergency-banner{flex-direction:column;}
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+    .section{padding:52px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo" onclick="window.location.href='index.html'">
+    <div class="nav-logo-box">⚡</div>
+    <span class="nav-logo-text">K.S. <span>Enterprises</span></span>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="window.location.href='services.html'">Services</button>
+    <button class="nav-link" onclick="window.location.href='workers.html'">Workers</button>
+    <button class="nav-link" onclick="window.location.href='index.html#areas'">Areas</button>
+    <button class="nav-link" onclick="window.location.href='index.html#about'">About</button>
+    <button class="nav-link" onclick="window.location.href='contact.html'">Contact</button>
+  </div>
+  <div class="nav-right">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <button class="nav-cta" onclick="window.location.href='book.html'">Book Now →</button>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-link" onclick="window.location.href='services.html'">Services</button>
+  <button class="mobile-link" onclick="window.location.href='workers.html'">Browse Workers</button>
+  <button class="mobile-link" onclick="window.location.href='index.html#areas'">Areas</button>
+  <button class="mobile-link" onclick="window.location.href='contact.html'">Contact</button>
+  <button class="nav-cta" style="margin-top:8px;border-radius:9px;padding:13px;" onclick="window.location.href='book.html'">Book Now →</button>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a onclick="window.location.href='index.html'">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Services</span>
+    </div>
+    <h1 class="page-title">All Services — <span>Upfront Prices</span></h1>
+    <p class="page-sub">Choose the service you need. See starting prices, what's included, and book a verified worker near you in 2 minutes.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterServices('all',this)">All Services</button>
+    <button class="filter-btn" onclick="filterServices('repair',this)">Repair</button>
+    <button class="filter-btn" onclick="filterServices('installation',this)">Installation</button>
+    <button class="filter-btn" onclick="filterServices('wiring',this)">Wiring</button>
+    <button class="filter-btn" onclick="filterServices('emergency',this)">Emergency</button>
+  </div>
+</div>
+
+<!-- SERVICES LIST -->
+<section class="section">
+  <div class="section-inner">
+
+    <div class="pricing-note fade-up">
+      <span class="pn-icon">💡</span>
+      <div class="pn-text"><strong>How pricing works:</strong> Prices shown are starting rates. Worker will confirm final price after inspecting the job — before any work starts. No surprise bills. You approve before they begin.</div>
+    </div>
+
+    <div class="services-list" id="servicesList">
+
+      <!-- 1 -->
+      <div class="service-detail-card fade-up" data-cat="repair installation" id="fan" onclick="bookService('Fan Installation & Repair')">
+        <div class="sdc-icon">🔌</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Fan Installation & Repair</div>
+          <div class="sdc-desc">Ceiling fan, exhaust fan, table fan — installation, repair, speed regulator fixing, blade balancing, and full replacement. Most common service in Navi Mumbai homes.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Ceiling Fan</span>
+            <span class="sdc-tag">Exhaust Fan</span>
+            <span class="sdc-tag">Speed Regulator</span>
+            <span class="sdc-tag">Blade Fix</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹199</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('Fan Installation & Repair')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="service-detail-card fade-up" data-cat="wiring" id="wiring" style="transition-delay:0.05s" onclick="bookService('Wiring & Rewiring')">
+        <div class="sdc-icon">🔋</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Wiring & Rewiring</div>
+          <div class="sdc-desc">Complete home wiring, partial rewiring, wire extension, fault detection, concealed wiring, and PVC casing work. Done with quality ISI-marked cables.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Concealed Wiring</span>
+            <span class="sdc-tag">Wire Extension</span>
+            <span class="sdc-tag">Fault Detection</span>
+            <span class="sdc-tag">PVC Casing</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹499</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('Wiring & Rewiring')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="service-detail-card fade-up" data-cat="repair" id="switchboard" style="transition-delay:0.08s" onclick="bookService('Switchboard Repair & Replacement')">
+        <div class="sdc-icon">🔳</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Switchboard Repair & Replacement</div>
+          <div class="sdc-desc">Switch not working, loose socket, sparking, full board replacement, modular switchboard fitting, USB socket installation. Quick turnaround, usually under 1 hour.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Socket Repair</span>
+            <span class="sdc-tag">Modular Board</span>
+            <span class="sdc-tag">USB Socket</span>
+            <span class="sdc-tag">Sparking Fix</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹149</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('Switchboard Repair & Replacement')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="service-detail-card fade-up" data-cat="repair" id="mcb" style="transition-delay:0.11s" onclick="bookService('MCB / Fuse Box Work')">
+        <div class="sdc-icon">⚙️</div>
+        <div class="sdc-body">
+          <div class="sdc-name">MCB / Fuse Box Work</div>
+          <div class="sdc-desc">MCB tripping, fuse box issues, adding new MCB, ELCB fitting, main switch problems, load balancing. Safety-critical work done only by experienced workers.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">MCB Replacement</span>
+            <span class="sdc-tag">ELCB Fitting</span>
+            <span class="sdc-tag">Load Balancing</span>
+            <span class="sdc-tag">Main Switch</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹299</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('MCB / Fuse Box Work')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="service-detail-card fade-up" data-cat="installation" id="ac" style="transition-delay:0.14s" onclick="bookService('AC Electrical Fitting')">
+        <div class="sdc-icon">❄️</div>
+        <div class="sdc-body">
+          <div class="sdc-name">AC Electrical Fitting</div>
+          <div class="sdc-desc">Dedicated AC point wiring, copper pipe earthing connection, stabiliser wiring, outdoor unit power connection. Works with all brands — Voltas, Daikin, LG, Samsung and more.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">AC Point Wiring</span>
+            <span class="sdc-tag">Earthing</span>
+            <span class="sdc-tag">Stabiliser</span>
+            <span class="sdc-tag">All Brands</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹399</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('AC Electrical Fitting')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="service-detail-card fade-up" data-cat="installation repair" id="light" style="transition-delay:0.17s" onclick="bookService('Light & Ceiling Work')">
+        <div class="sdc-icon">💡</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Light & Ceiling Work</div>
+          <div class="sdc-desc">LED light fitting, tube light, downlighter, chandelier, false ceiling light wiring, dimmer switch installation, outdoor light fitting. Makes your home look great.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">LED Fitting</span>
+            <span class="sdc-tag">Downlighter</span>
+            <span class="sdc-tag">Dimmer</span>
+            <span class="sdc-tag">Chandelier</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹199</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('Light & Ceiling Work')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="service-detail-card fade-up" data-cat="wiring installation" id="newwiring" style="transition-delay:0.2s" onclick="bookService('New Home Wiring')">
+        <div class="sdc-icon">🏠</div>
+        <div class="sdc-body">
+          <div class="sdc-name">New Home Wiring</div>
+          <div class="sdc-desc">Complete electrical wiring for new flat or house. Point-by-point wiring, board fitting, earthing, testing. Quote given after site visit — price depends on number of points.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Full Home</span>
+            <span class="sdc-tag">Point Wiring</span>
+            <span class="sdc-tag">Earthing</span>
+            <span class="sdc-tag">New Flat</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Pricing</div>
+            <div class="sdc-price" style="font-size:18px;">Custom</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('New Home Wiring')">Get Quote →</button>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="service-detail-card fade-up" data-cat="installation" id="appliance" style="transition-delay:0.23s" onclick="bookService('Appliance Installation')">
+        <div class="sdc-icon">📺</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Appliance Installation</div>
+          <div class="sdc-desc">Washing machine, geyser, microwave, refrigerator, dishwasher — point creation, earthing, proper socket fitting. Done right the first time, safely.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Geyser</span>
+            <span class="sdc-tag">Washing Machine</span>
+            <span class="sdc-tag">Refrigerator</span>
+            <span class="sdc-tag">Earthing</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹249</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('Appliance Installation')">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="service-detail-card fade-up" data-cat="emergency repair" id="emergency" style="transition-delay:0.26s" onclick="bookService('Emergency Electrical Repair')">
+        <div class="sdc-icon">🚨</div>
+        <div class="sdc-body">
+          <div class="sdc-name">Emergency Electrical Repair</div>
+          <div class="sdc-desc">Power cut, sparking, short circuit, burning smell, sudden trip — our workers respond fast. Available for urgent jobs in Navi Mumbai. Priority dispatch.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">Power Cut</span>
+            <span class="sdc-tag">Short Circuit</span>
+            <span class="sdc-tag">Sparking</span>
+            <span class="sdc-tag">Priority</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹399</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" style="background:#EF4444;" onclick="event.stopPropagation();bookService('Emergency Electrical Repair')">Book Urgent →</button>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="service-detail-card fade-up" data-cat="installation wiring" id="cctv" style="transition-delay:0.29s" onclick="bookService('CCTV & Doorbell Wiring')">
+        <div class="sdc-icon">📷</div>
+        <div class="sdc-body">
+          <div class="sdc-name">CCTV & Doorbell Wiring</div>
+          <div class="sdc-desc">Power wiring for CCTV cameras, DVR/NVR unit, video doorbell, intercom wiring. Camera mounting assistance available. Works with all major brands.</div>
+          <div class="sdc-tags">
+            <span class="sdc-tag">CCTV Power</span>
+            <span class="sdc-tag">DVR Wiring</span>
+            <span class="sdc-tag">Video Doorbell</span>
+            <span class="sdc-tag">Intercom</span>
+          </div>
+        </div>
+        <div class="sdc-right">
+          <div>
+            <div class="sdc-price-label">Starting from</div>
+            <div class="sdc-price">₹599</div>
+          </div>
+          <div class="sdc-avail"><span class="avail-dot"></span> Workers available</div>
+          <button class="sdc-book-btn" onclick="event.stopPropagation();bookService('CCTV & Doorbell Wiring')">Book Now →</button>
+        </div>
+      </div>
+
+    </div><!-- end services-list -->
+
+    <!-- EMERGENCY BANNER -->
+    <div class="emergency-banner fade-up">
+      <div>
+        <div class="eb-label">⚡ Urgent Help</div>
+        <div class="eb-title">Electrical emergency right now?</div>
+        <div class="eb-desc">Call or WhatsApp us directly. We'll find the nearest available worker immediately.</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;">
+        <a href="tel:+91XXXXXXXXXX" class="btn-red">📞 Call Now</a>
+        <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="sdc-book-btn" style="display:inline-flex;align-items:center;gap:8px;">💬 WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW PRICING WORKS -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding-top:52px;padding-bottom:52px;">
+  <div class="section-inner">
+    <div class="section-label fade-up">Pricing Policy</div>
+    <div class="section-title fade-up">No surprise bills — <span>ever</span></div>
+    <div class="pricing-steps">
+      <div class="ps-card fade-up">
+        <div class="ps-num">STEP 01</div>
+        <div class="ps-title">You see the starting price</div>
+        <div class="ps-desc">Every service shows a clear starting price before you book. No hidden fees at this stage.</div>
+      </div>
+      <div class="ps-card fade-up" style="transition-delay:0.1s">
+        <div class="ps-num">STEP 02</div>
+        <div class="ps-title">Worker inspects & confirms</div>
+        <div class="ps-desc">When the worker arrives, they assess the job and confirm the final price to your face — before starting any work.</div>
+      </div>
+      <div class="ps-card fade-up" style="transition-delay:0.2s">
+        <div class="ps-num">STEP 03</div>
+        <div class="ps-title">You approve, they start</div>
+        <div class="ps-desc">Only after you agree does the worker begin. You're always in control. Pay directly after the job is done.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">K.S. <span>Enterprises</span> · Navi Mumbai</div>
+    <div class="footer-links">
+      <a class="footer-link" onclick="window.location.href='index.html'">Home</a>
+      <a class="footer-link" onclick="window.location.href='workers.html'">Workers</a>
+      <a class="footer-link" onclick="window.location.href='book.html'">Book Now</a>
+      <a class="footer-link" onclick="window.location.href='contact.html'">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 K.S. Enterprises</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/91XXXXXXXXXX" target="_blank">💬</a>
+
+<script>
+  // Theme
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('ks-theme') || 'dark';
+  root.setAttribute('data-theme', saved);
+  btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+  function toggleTheme() {
+    const curr = root.getAttribute('data-theme');
+    const next = curr === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('ks-theme', next);
+  }
+
+  // Mobile menu
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Filter
+  function filterServices(cat, el) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.service-detail-card').forEach(card => {
+      const cats = card.getAttribute('data-cat') || '';
+      if (cat === 'all' || cats.includes(cat)) {
+        card.style.display = 'grid';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Book service — pass service name to book page
+  function bookService(name) {
+    window.location.href = 'book.html?service=' + encodeURIComponent(name);
+  }
+
+  // Fade-up on scroll
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
