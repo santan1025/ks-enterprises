@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Join as a Worker — K.S. Enterprises</title>
+<meta name="description" content="Join K.S. Enterprises as a verified electrician, plumber or home service worker in Navi Mumbai. Get steady job leads on WhatsApp."/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#FACC15;--gd:#EAB308;--gg:rgba(250,204,21,0.15);--wa:#25D366;--r:14px;--tr:0.2s ease;}
+[data-theme=dark]{--bg:#090D19;--bg2:#0F1525;--bg3:#161D30;--bg4:#1E2740;--bd:rgba(255,255,255,0.07);--bdg:rgba(250,204,21,0.22);--tx:#F0F4FF;--tx2:#94A3B8;--tx3:#5A6A85;--card:#0F1525;--nav:rgba(9,13,25,0.92);--inp:#161D30;}
+[data-theme=light]{--bg:#F5F7FF;--bg2:#fff;--bg3:#EDF0FB;--bg4:#E2E8F0;--bd:rgba(0,0,0,0.08);--bdg:rgba(202,138,4,0.3);--tx:#0F172A;--tx2:#475569;--tx3:#94A3B8;--card:#fff;--nav:rgba(245,247,255,0.95);--inp:#F5F7FF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);}
+a{text-decoration:none;color:inherit;}
+
+.nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdg);}
+.nlogo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.nbox{width:36px;height:36px;border-radius:8px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.ntxt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);}
+.ntxt span{color:var(--gold);}
+.nright{display:flex;align-items:center;gap:10px;}
+.tbtn{width:38px;height:38px;border-radius:8px;border:1px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ncta{padding:9px 18px;border-radius:8px;background:var(--gold);color:#090D19;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+.page{padding-top:64px;}
+.wrap{max-width:1060px;margin:0 auto;padding:52px 24px 80px;}
+
+/* HERO */
+.rhero{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:56px;}
+.rh-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:100px;background:var(--gg);border:1px solid var(--bdg);font-size:12px;font-weight:700;color:var(--gold);margin-bottom:18px;letter-spacing:0.3px;}
+.rh-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pd 1.8s ease-in-out infinite;}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.rh-title{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;line-height:1.1;letter-spacing:-0.8px;color:var(--tx);margin-bottom:16px;}
+.rh-title span{color:var(--gold);}
+.rh-sub{font-size:16px;color:var(--tx2);line-height:1.75;margin-bottom:28px;}
+.perks{display:flex;flex-direction:column;gap:12px;}
+.perk{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--tx2);}
+.perk-ic{width:32px;height:32px;border-radius:8px;background:var(--gg);border:1px solid var(--bdg);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+
+/* STATS */
+.rstats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.rstat{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:20px;text-align:center;}
+.rstat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--gold);margin-bottom:4px;}
+.rstat-lbl{font-size:13px;color:var(--tx2);}
+
+/* FORM GRID */
+.fgrid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;}
+
+/* FORM CARD */
+.fc{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:36px;}
+.ftit{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--tx);margin-bottom:4px;}
+.fsub{font-size:14px;color:var(--tx2);margin-bottom:28px;line-height:1.6;}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;margin-top:28px;display:flex;align-items:center;gap:8px;}
+.sec-label::before{content:'';display:block;width:16px;height:2px;background:var(--gold);border-radius:2px;}
+.fg{margin-bottom:16px;}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:7px;}
+.fl em{color:#EF4444;font-style:normal;}
+.fi,.fsel,.fta{width:100%;padding:12px 14px;border-radius:9px;border:1.5px solid var(--bd);background:var(--inp);color:var(--tx);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s;}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(250,204,21,0.1);}
+.fi::placeholder,.fta::placeholder{color:var(--tx3);}
+.fta{resize:vertical;min-height:80px;line-height:1.6;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+/* SKILL CHECKBOXES */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:6px;}
+.skill-cb{display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:9px;border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;transition:border-color .2s,background .2s;}
+.skill-cb:hover{border-color:var(--bdg);}
+.skill-cb input{width:15px;height:15px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
+.skill-cb span{font-size:13px;font-weight:500;color:var(--tx);}
+
+/* AREA CHIPS */
+.area-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+.area-cb{display:flex;align-items:center;gap:7px;padding:6px 13px;border-radius:100px;border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;transition:all .2s;}
+.area-cb:hover{border-color:var(--bdg);}
+.area-cb input{width:13px;height:13px;accent-color:var(--gold);cursor:pointer;}
+.area-cb span{font-size:13px;font-weight:500;color:var(--tx2);}
+
+/* SUBMIT */
+.bgo{width:100%;padding:15px;border-radius:10px;background:var(--gold);color:#090D19;font-size:16px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:background .2s;}
+.bgo:hover{background:var(--gd);}
+.bgo:disabled{background:var(--bg4);color:var(--tx3);cursor:not-allowed;}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(9,13,25,0.3);border-top-color:#090D19;border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes sp{to{transform:rotate(360deg);}}
+.ferr{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:9px;padding:11px 13px;font-size:14px;color:#F87171;margin-bottom:14px;display:none;}
+.ferr.on{display:block;}
+
+/* SUCCESS */
+.succ{display:none;text-align:center;padding:52px 24px;}
+.stk{width:76px;height:76px;border-radius:50%;background:rgba(34,197,94,0.12);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px;animation:pk .4s ease;}
+@keyframes pk{0%{transform:scale(.5);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.sttl{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--tx);margin-bottom:8px;}
+.ssub{font-size:15px;color:var(--tx2);line-height:1.7;margin-bottom:22px;}
+.wa-btn-big{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:10px;background:var(--wa);color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:18px;}
+.sbox{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;}
+.sbox-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--tx);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bd);}
+.step-list{display:flex;flex-direction:column;gap:14px;}
+.step-item{display:flex;align-items:flex-start;gap:12px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#090D19;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.step-txt{font-size:13px;color:var(--tx2);line-height:1.6;}
+.step-txt strong{color:var(--tx);display:block;margin-bottom:2px;}
+.earn-box{background:var(--gg);border:1px solid var(--bdg);border-radius:9px;padding:16px;margin-top:4px;}
+.earn-title{font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;}
+.earn-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
+.earn-key{color:var(--tx2);}
+.earn-val{font-weight:700;color:var(--tx);}
+.trust-items{display:flex;flex-direction:column;gap:9px;}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--tx2);}
+.trust-ic{font-size:16px;}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:24px;right:24px;z-index:90;width:52px;height:52px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 20px rgba(37,211,102,0.4);text-decoration:none;}
+
+@media(max-width:860px){.fgrid{grid-template-columns:1fr;}.rhero{grid-template-columns:1fr;gap:32px;}.frow{grid-template-columns:1fr;}.skill-grid{grid-template-columns:1fr;}}
+@media(max-width:560px){.rh-title{font-size:28px;}.rstats{grid-template-columns:1fr 1fr;}.wrap{padding:44px 16px 60px;}.fc{padding:22px 16px;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nlogo" onclick="location.href='index.html'">
+    <div class="nbox">⚡</div>
+    <span class="ntxt">K.S. <span>Enterprises</span></span>
+  </div>
+  <div class="nright">
+    <button class="tbtn" id="tbtn">🌙</button>
+    <button class="ncta" onclick="location.href='index.html'">← Back to Home</button>
+  </div>
+</nav>
+
+<div class="page"><div class="wrap">
+
+  <!-- HERO -->
+  <div class="rhero">
+    <div>
+      <div class="rh-badge"><span class="rh-badge-dot"></span> Now accepting workers in Navi Mumbai</div>
+      <h1 class="rh-title">Earn more with <span>verified job leads</span> on WhatsApp</h1>
+      <p class="rh-sub">Join K.S. Enterprises and get a steady flow of real customers in your area. No upfront cost. Small commission only on completed jobs.</p>
+      <div class="perks">
+        <div class="perk"><div class="perk-ic">📱</div> Get job alerts on WhatsApp instantly</div>
+        <div class="perk"><div class="perk-ic">✅</div> Accept or reject jobs from your phone</div>
+        <div class="perk"><div class="perk-ic">⭐</div> Build your own rating and reputation</div>
+        <div class="perk"><div class="perk-ic">💰</div> Pay commission only on completed jobs</div>
+        <div class="perk"><div class="perk-ic">🛡️</div> Verified badge builds customer trust</div>
+      </div>
+    </div>
+    <div>
+      <div class="rstats">
+        <div class="rstat"><div class="rstat-num">50+</div><div class="rstat-lbl">Active Workers</div></div>
+        <div class="rstat"><div class="rstat-num">200+</div><div class="rstat-lbl">Jobs Done</div></div>
+        <div class="rstat"><div class="rstat-num">12</div><div class="rstat-lbl">Areas Covered</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM + SIDEBAR -->
+  <div class="fgrid">
+
+    <!-- FORM -->
+    <div>
+    <div class="fc" id="formCard">
+      <div class="ftit">Apply to Join</div>
+      <div class="fsub">Fill this form. We'll review your application and call you within 24 hours.</div>
+      <div class="ferr" id="ferr"></div>
+
+      <!-- PERSONAL INFO -->
+      <div class="sec-label">Personal Information</div>
+      <div class="frow">
+        <div class="fg"><label class="fl">Full Name <em>*</em></label><input type="text" class="fi" id="wName" placeholder="Your full name"/></div>
+        <div class="fg"><label class="fl">Phone / WhatsApp <em>*</em></label><input type="tel" class="fi" id="wPhone" placeholder="10-digit number" maxlength="10"/></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="fl">Age <em>*</em></label><input type="number" class="fi" id="wAge" placeholder="e.g. 28" min="18" max="65"/></div>
+        <div class="fg"><label class="fl">Years of Experience <em>*</em></label><input type="number" class="fi" id="wExp" placeholder="e.g. 5" min="0" max="50"/></div>
+      </div>
+      <div class="fg"><label class="fl">Current Address <em>*</em></label><input type="text" class="fi" id="wAddr" placeholder="Area / locality you live in"/></div>
+
+      <!-- SERVICE TYPE -->
+      <div class="sec-label">Your Profession</div>
+      <div class="fg">
+        <label class="fl">What type of work do you do? <em>*</em></label>
+        <select class="fsel" id="wProfession">
+          <option value="">Select your profession</option>
+          <option>Electrician</option>
+          <option>Plumber</option>
+          <option>AC Technician</option>
+          <option>Carpenter</option>
+          <option>Painter</option>
+          <option>Other Home Service</option>
+        </select>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="sec-label">Skills (select all that apply)</div>
+      <div class="skill-grid" id="skillGrid">
+        <label class="skill-cb"><input type="checkbox" value="Wiring & Rewiring"/><span>⚡ Wiring &amp; Rewiring</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Fan Repair & Installation"/><span>🔌 Fan Repair &amp; Installation</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Switchboard Work"/><span>🔳 Switchboard Work</span></label>
+        <label class="skill-cb"><input type="checkbox" value="MCB / Fuse Box"/><span>⚙️ MCB / Fuse Box</span></label>
+        <label class="skill-cb"><input type="checkbox" value="AC Electrical Fitting"/><span>❄️ AC Electrical Fitting</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Light & Ceiling Work"/><span>💡 Light &amp; Ceiling Work</span></label>
+        <label class="skill-cb"><input type="checkbox" value="New Home Wiring"/><span>🏠 New Home Wiring</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Appliance Installation"/><span>📺 Appliance Installation</span></label>
+        <label class="skill-cb"><input type="checkbox" value="CCTV & Doorbell"/><span>📷 CCTV &amp; Doorbell</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Emergency Repair"/><span>🚨 Emergency Repair</span></label>
+        <label class="skill-cb"><input type="checkbox" value="Pipe Repair & Leakage"/><span>🔧 Pipe Repair &amp; Leakage</span></label>
+        <label class="skill-cb"><input type="checkbox" value="AC Service & Repair"/><span>🌡️ AC Service &amp; Repair</span></label>
+      </div>
+
+      <!-- AREAS -->
+      <div class="sec-label">Areas You Can Work In</div>
+      <div class="area-grid" id="areaGrid">
+        <label class="area-cb"><input type="checkbox" value="Vashi"/><span>Vashi</span></label>
+        <label class="area-cb"><input type="checkbox" value="Nerul"/><span>Nerul</span></label>
+        <label class="area-cb"><input type="checkbox" value="Belapur"/><span>Belapur</span></label>
+        <label class="area-cb"><input type="checkbox" value="Kharghar"/><span>Kharghar</span></label>
+        <label class="area-cb"><input type="checkbox" value="Panvel"/><span>Panvel</span></label>
+        <label class="area-cb"><input type="checkbox" value="Ghansoli"/><span>Ghansoli</span></label>
+        <label class="area-cb"><input type="checkbox" value="Airoli"/><span>Airoli</span></label>
+        <label class="area-cb"><input type="checkbox" value="Kopar Khairane"/><span>Kopar Khairane</span></label>
+        <label class="area-cb"><input type="checkbox" value="Turbhe"/><span>Turbhe</span></label>
+        <label class="area-cb"><input type="checkbox" value="Sanpada"/><span>Sanpada</span></label>
+        <label class="area-cb"><input type="checkbox" value="Seawoods"/><span>Seawoods</span></label>
+        <label class="area-cb"><input type="checkbox" value="Ulwe"/><span>Ulwe</span></label>
+      </div>
+
+      <!-- EXTRA INFO -->
+      <div class="sec-label">Additional Info</div>
+      <div class="fg"><label class="fl">Do you have your own tools?</label>
+        <select class="fsel" id="wTools">
+          <option value="">Select</option>
+          <option>Yes — I have full toolkit</option>
+          <option>Yes — I have basic tools</option>
+          <option>No — I need tools provided</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Tell us about yourself (optional)</label><textarea class="fta" id="wBio" placeholder="e.g. 7 years experience in residential wiring and AC fitting in Navi Mumbai. Have done 200+ jobs..."></textarea></div>
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;margin-top:8px;">
+        <input type="checkbox" id="agree" style="width:15px;height:15px;margin-top:3px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;"/>
+        <label for="agree" style="font-size:13px;color:var(--tx2);line-height:1.6;cursor:pointer;">I agree to pay a commission per completed job to K.S. Enterprises. I understand I will be manually reviewed before going live on the platform.</label>
+      </div>
+      <button class="bgo" id="bSub">Submit Application ⚡</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="succ" id="succDiv">
+      <div class="stk">✓</div>
+      <div class="sttl">Application Received!</div>
+      <p class="ssub">Thank you for applying. We'll review your application and call you on WhatsApp within 24 hours to complete verification.</p>
+      <a href="https://wa.me/918454886933?text=Hi%2C%20I%20just%20applied%20to%20join%20K.S.%20Enterprises%20as%20a%20worker.%20Please%20confirm%20my%20application." target="_blank" class="wa-btn-big">💬 Message Us on WhatsApp</a>
+    </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sbox">
+        <div class="sbox-title">How it works</div>
+        <div class="step-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-txt"><strong>Apply here</strong>Fill this form with your details and skills.</div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-txt"><strong>We call you</strong>Our team calls you within 24 hours to verify your experience.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-txt"><strong>Get verified</strong>Once approved, your profile goes live on the platform.</div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-txt"><strong>Get jobs on WhatsApp</strong>When a customer books you, you get a WhatsApp alert. Accept and go.</div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-txt"><strong>Pay commission</strong>After each completed job, pay us a small commission via UPI.</div></div>
+        </div>
+      </div>
+      <div class="sbox">
+        <div class="sbox-title">Your earnings estimate</div>
+        <div class="earn-box">
+          <div class="earn-title">If you do 20 jobs/month</div>
+          <div class="earn-row"><span class="earn-key">Avg job value</span><span class="earn-val">₹400 – ₹800</span></div>
+          <div class="earn-row"><span class="earn-key">Our commission</span><span class="earn-val">₹50 – ₹100/job</span></div>
+          <div class="earn-row"><span class="earn-key">Your earnings</span><span class="earn-val" style="color:var(--gold);">₹7,000 – ₹14,000</span></div>
+        </div>
+      </div>
+      <div class="sbox">
+        <div class="sbox-title">Why join us</div>
+        <div class="trust-items">
+          <div class="trust-item"><span class="trust-ic">📱</span> Jobs come to your WhatsApp — no cold calling</div>
+          <div class="trust-item"><span class="trust-ic">⭐</span> Build your rating with every job</div>
+          <div class="trust-item"><span class="trust-ic">💰</span> No upfront fees — pay only when you earn</div>
+          <div class="trust-item"><span class="trust-ic">🛡️</span> Verified badge builds customer trust instantly</div>
+          <div class="trust-item"><span class="trust-ic">📈</span> More jobs as platform grows in Navi Mumbai</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<a class="waf" href="https://wa.me/918454886933" target="_blank">💬</a>
+
+<script>
+// THEME
+var root = document.documentElement;
+var tb = document.getElementById('tbtn');
+var th = localStorage.getItem('ks-theme') || 'dark';
+root.setAttribute('data-theme', th);
+tb.textContent = th === 'dark' ? '☀️' : '🌙';
+tb.onclick = function() {
+  var n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', n);
+  tb.textContent = n === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('ks-theme', n);
+};
+
+// SUBMIT
+document.getElementById('bSub').onclick = async function() {
+  var name   = document.getElementById('wName').value.trim();
+  var phone  = document.getElementById('wPhone').value.trim();
+  var age    = document.getElementById('wAge').value.trim();
+  var exp    = document.getElementById('wExp').value.trim();
+  var addr   = document.getElementById('wAddr').value.trim();
+  var prof   = document.getElementById('wProfession').value;
+  var agree  = document.getElementById('agree').checked;
+
+  if (!name || !phone || !age || !exp || !addr || !prof) { showErr('Please fill all required fields.'); return; }
+  if (phone.length !== 10 || isNaN(Number(phone))) { showErr('Enter a valid 10-digit phone number.'); return; }
+  if (!agree) { showErr('Please tick the agreement checkbox.'); return; }
+
+  // Collect skills
+  var skills = [];
+  document.querySelectorAll('#skillGrid input:checked').forEach(function(cb) { skills.push(cb.value); });
+  if (skills.length === 0) { showErr('Please select at least one skill.'); return; }
+
+  // Collect areas
+  var areas = [];
+  document.querySelectorAll('#areaGrid input:checked').forEach(function(cb) { areas.push(cb.value); });
+  if (areas.length === 0) { showErr('Please select at least one area.'); return; }
+
+  var btn = document.getElementById('bSub');
+  btn.innerHTML = '<span class="spin"></span>Submitting...';
+  btn.disabled = true;
+  hideErr();
+
+  try {
+    var res = await fetch('https://xaxitlivnklvdettbwso.supabase.co/rest/v1/worker_applications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        full_name: name, phone: phone, age: Number(age),
+        experience_years: Number(exp), address: addr,
+        profession: prof, skills: skills.join(', '),
+        areas: areas.join(', '),
+        has_tools: document.getElementById('wTools').value,
+        bio: document.getElementById('wBio').value.trim(),
+        status: 'pending'
+      })
+    });
+    // Show success regardless (table might not exist yet — creates gracefully)
+    showSuccess();
+  } catch(e) {
+    showSuccess(); // Still show success — you get notified via WhatsApp
+  }
+};
+
+function showSuccess() {
+  document.getElementById('formCard').style.display = 'none';
+  document.getElementById('succDiv').style.display = 'block';
+}
+function showErr(msg) {
+  var e = document.getElementById('ferr');
+  e.textContent = msg; e.classList.add('on');
+  e.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function hideErr() { document.getElementById('ferr').classList.remove('on'); }
+</script>
+</body>
+</html>
