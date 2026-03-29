@@ -1,120 +1,126 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Book a Service — K.S. Enterprises</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--gold:#FACC15;--gold-dark:#EAB308;--gold-glow:rgba(250,204,21,0.15);--radius:14px;--tr:0.2s ease;}
-[data-theme="dark"]{--bg:#090D19;--bg2:#0F1525;--bg3:#161D30;--bg4:#1E2740;--bd:rgba(255,255,255,0.07);--bdg:rgba(250,204,21,0.22);--tx:#F0F4FF;--tx2:#94A3B8;--tx3:#5A6A85;--card:#0F1525;--nav:rgba(9,13,25,0.92);--inp:#161D30;}
-[data-theme="light"]{--bg:#F5F7FF;--bg2:#fff;--bg3:#EDF0FB;--bg4:#E2E8F0;--bd:rgba(0,0,0,0.08);--bdg:rgba(202,138,4,0.3);--tx:#0F172A;--tx2:#475569;--tx3:#94A3B8;--card:#fff;--nav:rgba(245,247,255,0.95);--inp:#F5F7FF;}
+:root{--gold:#FACC15;--gd:#EAB308;--gg:rgba(250,204,21,0.15);}
+[data-theme=dark]{--bg:#090D19;--bg2:#0F1525;--bg3:#161D30;--bg4:#1E2740;--bd:rgba(255,255,255,0.08);--bdg:rgba(250,204,21,0.25);--tx:#F0F4FF;--tx2:#94A3B8;--tx3:#5A6A85;--inp:#161D30;}
+[data-theme=light]{--bg:#F5F7FF;--bg2:#fff;--bg3:#EDF0FB;--bg4:#E2E8F0;--bd:rgba(0,0,0,0.09);--bdg:rgba(202,138,4,0.3);--tx:#0F172A;--tx2:#475569;--tx3:#94A3B8;--inp:#F5F7FF;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);}
 a{text-decoration:none;color:inherit;}
-.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdg);}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(9,13,25,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdg);}
+[data-theme=light] .nav{background:rgba(245,247,255,0.95);}
 .nlogo{display:flex;align-items:center;gap:10px;cursor:pointer;}
 .nbox{width:36px;height:36px;border-radius:8px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;}
 .ntxt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);}
-.ntxt span{color:var(--gold);}
-.tbtn{width:38px;height:38px;border-radius:8px;border:1px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ntxt b{color:var(--gold);font-weight:800;}
+.tbtn{width:38px;height:38px;border-radius:8px;border:1px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:16px;}
 
-.page{padding-top:64px;min-height:100vh;}
-.wrap{max-width:960px;margin:0 auto;padding:48px 20px 80px;}
+/* PAGE */
+.page{padding-top:64px;}
+.wrap{max-width:960px;margin:0 auto;padding:44px 20px 80px;}
 
-/* STEPBAR */
-.sbar{display:flex;align-items:center;margin-bottom:40px;}
+/* STEP BAR */
+.sbar{display:flex;align-items:center;margin-bottom:36px;}
 .si{display:flex;align-items:center;gap:8px;flex:1;}
-.sc{width:30px;height:30px;border-radius:50%;border:2px solid var(--bd);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx3);flex-shrink:0;transition:all .2s;}
-.sc.act{border-color:var(--gold);color:var(--gold);background:var(--gold-glow);}
-.sc.dn{background:var(--gold);border-color:var(--gold);color:#0A0E1A;}
+.sc{width:30px;height:30px;border-radius:50%;border:2px solid var(--bd);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx3);flex-shrink:0;}
+.sc.act{border-color:var(--gold);color:var(--gold);background:var(--gg);}
+.sc.dn{background:var(--gold);border-color:var(--gold);color:#090D19;}
 .sl{font-size:13px;color:var(--tx3);white-space:nowrap;}
 .sl.act{color:var(--tx);font-weight:600;}
-.sln{flex:1;height:1px;background:var(--bd);margin:0 10px;transition:background .3s;}
+.sln{flex:1;height:1px;background:var(--bd);margin:0 8px;}
 .sln.dn{background:var(--gold);}
 
-/* LAYOUT */
-.maingrid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;}
+/* GRID */
+.mgrid{display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;}
 
-/* FORM */
-.fc{background:var(--card);border:1px solid var(--bd);border-radius:var(--radius);padding:32px;}
-.fsec{display:none;}
-.fsec.on{display:block;}
-.ftit{font-family:'Syne',sans-serif;font-size:21px;font-weight:800;color:var(--tx);margin-bottom:4px;}
-.fsub{font-size:14px;color:var(--tx2);margin-bottom:24px;line-height:1.6;}
-.fg{margin-bottom:18px;}
-.fl{display:block;font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:7px;}
+/* FORM CARD */
+.fc{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:30px;}
+[data-theme=dark] .fc{background:var(--bg2);}
+
+/* STEPS — hidden by default, shown with .on */
+.step{display:none;}
+.step.on{display:block;}
+
+.ftit{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--tx);margin-bottom:4px;}
+.fsub{font-size:14px;color:var(--tx2);margin-bottom:22px;line-height:1.6;}
+.fg{margin-bottom:16px;}
+.fl{display:block;font-size:13px;font-weight:600;color:var(--tx2);margin-bottom:6px;}
 .fl em{color:#EF4444;font-style:normal;}
-.fi,.fs,.fta{width:100%;padding:12px 14px;border-radius:9px;border:1.5px solid var(--bd);background:var(--inp);color:var(--tx);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s;}
-.fi:focus,.fs:focus,.fta:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(250,204,21,0.1);}
+.fi,.fsel,.fta{width:100%;padding:11px 13px;border-radius:9px;border:1.5px solid var(--bd);background:var(--inp);color:var(--tx);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(250,204,21,0.1);}
 .fi::placeholder,.fta::placeholder{color:var(--tx3);}
-.fs option{background:var(--bg2);}
-.fta{resize:vertical;min-height:88px;line-height:1.6;}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fta{resize:vertical;min-height:80px;line-height:1.6;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 
-/* SERVICE CARDS */
-.svgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px;}
-.svo{padding:13px 14px;border-radius:10px;border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;display:flex;align-items:center;gap:10px;transition:border-color .2s,background .2s;-webkit-user-select:none;user-select:none;}
+/* SERVICE OPTIONS */
+.svgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:6px;}
+.svo{padding:12px 13px;border-radius:10px;border:1.5px solid var(--bd);background:var(--bg3);cursor:pointer;display:flex;align-items:center;gap:9px;transition:border-color .18s,background .18s;}
 .svo:hover{border-color:var(--bdg);}
-.svo.sel{border-color:var(--gold);background:var(--gold-glow);}
-.svo-ic{font-size:20px;flex-shrink:0;}
-.svo-nm{font-size:13px;font-weight:600;color:var(--tx);line-height:1.3;}
-.svo-pr{font-size:11px;color:var(--gold);margin-top:2px;font-weight:600;}
+.svo.sel{border-color:var(--gold);background:var(--gg);}
+.sic{font-size:19px;flex-shrink:0;}
+.snm{font-size:13px;font-weight:600;color:var(--tx);line-height:1.3;}
+.spr{font-size:11px;color:var(--gold);font-weight:600;margin-top:1px;}
 
-/* AREA CHIPS */
-.argrid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
-.aro{padding:7px 15px;border-radius:100px;border:1.5px solid var(--bd);background:var(--bg3);font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;transition:all .2s;-webkit-user-select:none;user-select:none;}
+/* AREA OPTIONS */
+.agrid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+.aro{padding:7px 14px;border-radius:100px;border:1.5px solid var(--bd);background:var(--bg3);font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;transition:all .18s;}
 .aro:hover{border-color:var(--bdg);color:var(--gold);}
-.aro.sel{border-color:var(--gold);background:var(--gold-glow);color:var(--gold);font-weight:700;}
+.aro.sel{border-color:var(--gold);background:var(--gg);color:var(--gold);font-weight:700;}
 
 /* BUTTONS */
-.bgo{width:100%;padding:14px;border-radius:10px;background:var(--gold);color:#0A0E1A;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;transition:background .2s,transform .15s;}
-.bgo:hover{background:var(--gold-dark);transform:translateY(-1px);}
-.bgo:disabled{background:var(--bg4);color:var(--tx3);cursor:not-allowed;transform:none;}
-.bbk{width:100%;padding:12px;border-radius:10px;background:transparent;color:var(--tx2);font-size:14px;font-weight:600;border:1.5px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:all .2s;}
+.bgo{width:100%;padding:14px;border-radius:10px;background:var(--gold);color:#090D19;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;}
+.bgo:hover{background:var(--gd);}
+.bgo:disabled{background:var(--bg4);color:var(--tx3);cursor:not-allowed;}
+.bbk{width:100%;padding:11px;border-radius:10px;background:transparent;color:var(--tx2);font-size:14px;font-weight:600;border:1.5px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;}
 .bbk:hover{border-color:var(--bdg);color:var(--tx);}
 
+/* REVIEW TABLE */
+.rtable{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:16px;margin-bottom:16px;}
+.rrow{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--bd);}
+.rrow:last-child{border-bottom:none;}
+.rk{font-size:13px;color:var(--tx2);flex-shrink:0;}
+.rv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;word-break:break-word;}
+.rv.gold{color:var(--gold);}
+
 /* ERROR */
-.ferr{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:9px;padding:12px 14px;font-size:14px;color:#F87171;margin-bottom:14px;display:none;}
+.ferr{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:9px;padding:11px 13px;font-size:14px;color:#F87171;margin-bottom:12px;display:none;}
 .ferr.on{display:block;}
-.spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(10,14,26,0.3);border-top-color:#0A0E1A;border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:6px;}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid rgba(9,13,25,0.3);border-top-color:#090D19;border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:5px;}
 @keyframes sp{to{transform:rotate(360deg);}}
 
 /* SUMMARY */
-.scard{background:var(--card);border:1px solid var(--bdg);border-radius:var(--radius);padding:24px;position:sticky;top:80px;}
-.stit{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--bd);}
-.sr{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;}
-.sk{font-size:13px;color:var(--tx2);}
-.sv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;}
-.sv.g{color:var(--gold);}
-.sdiv{height:1px;background:var(--bd);margin:12px 0;}
-.snote{background:var(--bg3);border:1px solid var(--bd);border-radius:9px;padding:12px;font-size:13px;color:var(--tx2);line-height:1.6;margin-top:14px;}
-.snote strong{color:var(--tx);}
-
-/* REVIEW BOX */
-.rvbox{background:var(--bg3);border:1px solid var(--bd);border-radius:10px;padding:18px;margin-bottom:18px;}
-.rvr{display:flex;justify-content:space-between;font-size:14px;margin-bottom:8px;}
-.rvd{height:1px;background:var(--bd);margin:10px 0;}
+.scard{background:var(--bg2);border:1px solid var(--bdg);border-radius:14px;padding:22px;position:sticky;top:80px;}
+.stit{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--bd);}
+.sumrow{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px;}
+.sumk{font-size:13px;color:var(--tx2);}
+.sumv{font-size:13px;font-weight:600;color:var(--tx);text-align:right;}
+.sumv.g{color:var(--gold);}
+.sumdiv{height:1px;background:var(--bd);margin:10px 0;}
+.snote{background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:11px;font-size:13px;color:var(--tx2);line-height:1.6;margin-top:12px;}
 
 /* SUCCESS */
-.succ{display:none;text-align:center;padding:52px 20px;}
-.stk{width:76px;height:76px;border-radius:50%;background:rgba(34,197,94,0.15);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 22px;animation:pk .4s ease;}
-@keyframes pk{0%{transform:scale(.5);opacity:0;}80%{transform:scale(1.1);}100%{transform:scale(1);opacity:1;}}
-.sttl{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--tx);margin-bottom:8px;}
-.ssb{font-size:15px;color:var(--tx2);line-height:1.7;margin-bottom:18px;}
-.sid{font-size:13px;color:var(--tx3);margin-bottom:24px;}
-.sid strong{color:var(--gold);font-family:'Syne',sans-serif;}
-.wabtn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;background:#25D366;color:#fff;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;}
-.hbtn{display:inline-block;margin-top:10px;padding:11px 22px;border-radius:9px;background:transparent;color:var(--tx2);border:1.5px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;}
+.succ{display:none;text-align:center;padding:48px 16px;}
+.stk{width:72px;height:72px;border-radius:50%;background:rgba(34,197,94,0.12);border:2px solid rgba(34,197,94,0.4);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px;animation:pk .4s ease;}
+@keyframes pk{0%{transform:scale(.5);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.sttl{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--tx);margin-bottom:8px;}
+.ssub{font-size:15px;color:var(--tx2);line-height:1.7;margin-bottom:16px;}
+.sbid{font-size:13px;color:var(--tx3);margin-bottom:22px;}
+.sbid b{color:var(--gold);font-family:'Syne',sans-serif;}
+.wabtn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:10px;background:#25D366;color:#fff;font-size:15px;font-weight:700;font-family:'DM Sans',sans-serif;border:none;cursor:pointer;text-decoration:none;}
+.hbtn{display:inline-block;margin-top:10px;padding:10px 20px;border-radius:9px;background:transparent;color:var(--tx2);border:1.5px solid var(--bd);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;}
 
 /* WA FLOAT */
-.waf{position:fixed;bottom:24px;right:24px;z-index:900;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none;animation:wb 5s ease-in-out infinite;}
-@keyframes wb{0%,90%,100%{transform:translateY(0);}93%{transform:translateY(-7px);}96%{transform:translateY(-3px);}}
-.waf:hover{animation:none;transform:scale(1.1);}
+.waf{position:fixed;bottom:22px;right:22px;z-index:90;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 20px rgba(37,211,102,0.4);text-decoration:none;}
 
-@media(max-width:820px){.maingrid{grid-template-columns:1fr;}.scard{position:static;}.fr{grid-template-columns:1fr;}.svgrid{grid-template-columns:1fr;}}
-@media(max-width:480px){.fc{padding:18px 14px;}}
+@media(max-width:800px){.mgrid{grid-template-columns:1fr;}.scard{position:static;}.frow{grid-template-columns:1fr;}.svgrid{grid-template-columns:1fr;}}
+@media(max-width:460px){.fc{padding:18px 14px;}}
 </style>
 </head>
 <body>
@@ -122,7 +128,7 @@ a{text-decoration:none;color:inherit;}
 <nav class="nav">
   <div class="nlogo" onclick="location.href='index.html'">
     <div class="nbox">⚡</div>
-    <span class="ntxt">K.S. <span>Enterprises</span></span>
+    <span class="ntxt">K.S. <b>Enterprises</b></span>
   </div>
   <button class="tbtn" id="tbtn">🌙</button>
 </nav>
@@ -131,134 +137,138 @@ a{text-decoration:none;color:inherit;}
 
   <!-- STEP BAR -->
   <div class="sbar">
-    <div class="si"><div class="sc act" id="sc1">1</div><span class="sl act" id="sl1">Service & Area</span></div>
+    <div class="si"><div class="sc act" id="sc1">1</div><span class="sl act" id="sl1">Service &amp; Area</span></div>
     <div class="sln" id="ln1"></div>
-    <div class="si"><div class="sc" id="sc2">2</div><span class="sl" id="sl2">Date & Time</span></div>
+    <div class="si"><div class="sc" id="sc2">2</div><span class="sl" id="sl2">Date &amp; Time</span></div>
     <div class="sln" id="ln2"></div>
     <div class="si"><div class="sc" id="sc3">3</div><span class="sl" id="sl3">Your Details</span></div>
     <div class="sln" id="ln3"></div>
     <div class="si"><div class="sc" id="sc4">4</div><span class="sl" id="sl4">Confirm</span></div>
   </div>
 
-  <div class="maingrid" id="mg">
+  <div class="mgrid" id="mg">
     <div>
-    <div class="fc">
-      <div class="ferr" id="fe"></div>
+      <!-- FORM CARD -->
+      <div class="fc" id="formCard">
+        <div class="ferr" id="ferr"></div>
 
-      <!-- S1 -->
-      <div class="fsec on" id="s1">
-        <div class="ftit">What do you need?</div>
-        <div class="fsub">Pick a service and your area in Navi Mumbai.</div>
-        <div class="fg">
-          <label class="fl">Select Service <em>*</em></label>
-          <div class="svgrid" id="svgrid">
-            <div class="svo" data-v="Fan Installation &amp; Repair"><span class="svo-ic">🔌</span><div><div class="svo-nm">Fan Installation & Repair</div><div class="svo-pr">From ₹199</div></div></div>
-            <div class="svo" data-v="Wiring &amp; Rewiring"><span class="svo-ic">🔋</span><div><div class="svo-nm">Wiring & Rewiring</div><div class="svo-pr">From ₹499</div></div></div>
-            <div class="svo" data-v="Switchboard Repair"><span class="svo-ic">🔳</span><div><div class="svo-nm">Switchboard Repair</div><div class="svo-pr">From ₹149</div></div></div>
-            <div class="svo" data-v="MCB / Fuse Box Work"><span class="svo-ic">⚙️</span><div><div class="svo-nm">MCB / Fuse Box Work</div><div class="svo-pr">From ₹299</div></div></div>
-            <div class="svo" data-v="AC Electrical Fitting"><span class="svo-ic">❄️</span><div><div class="svo-nm">AC Electrical Fitting</div><div class="svo-pr">From ₹399</div></div></div>
-            <div class="svo" data-v="Light &amp; Ceiling Work"><span class="svo-ic">💡</span><div><div class="svo-nm">Light & Ceiling Work</div><div class="svo-pr">From ₹199</div></div></div>
-            <div class="svo" data-v="New Home Wiring"><span class="svo-ic">🏠</span><div><div class="svo-nm">New Home Wiring</div><div class="svo-pr">Custom quote</div></div></div>
-            <div class="svo" data-v="Appliance Installation"><span class="svo-ic">📺</span><div><div class="svo-nm">Appliance Installation</div><div class="svo-pr">From ₹249</div></div></div>
-            <div class="svo" data-v="Emergency Electrical Repair"><span class="svo-ic">🚨</span><div><div class="svo-nm">Emergency Repair</div><div class="svo-pr">From ₹399</div></div></div>
-            <div class="svo" data-v="CCTV &amp; Doorbell Wiring"><span class="svo-ic">📷</span><div><div class="svo-nm">CCTV & Doorbell</div><div class="svo-pr">From ₹599</div></div></div>
+        <!-- STEP 1 -->
+        <div class="step on" id="s1">
+          <div class="ftit">What do you need?</div>
+          <div class="fsub">Pick a service and your area in Navi Mumbai.</div>
+          <div class="fg">
+            <label class="fl">Select Service <em>*</em></label>
+            <div class="svgrid" id="svgrid">
+              <div class="svo" data-v="Fan Installation and Repair"><span class="sic">🔌</span><div><div class="snm">Fan Installation &amp; Repair</div><div class="spr">From ₹199</div></div></div>
+              <div class="svo" data-v="Wiring and Rewiring"><span class="sic">🔋</span><div><div class="snm">Wiring &amp; Rewiring</div><div class="spr">From ₹499</div></div></div>
+              <div class="svo" data-v="Switchboard Repair"><span class="sic">🔳</span><div><div class="snm">Switchboard Repair</div><div class="spr">From ₹149</div></div></div>
+              <div class="svo" data-v="MCB Fuse Box Work"><span class="sic">⚙️</span><div><div class="snm">MCB / Fuse Box Work</div><div class="spr">From ₹299</div></div></div>
+              <div class="svo" data-v="AC Electrical Fitting"><span class="sic">❄️</span><div><div class="snm">AC Electrical Fitting</div><div class="spr">From ₹399</div></div></div>
+              <div class="svo" data-v="Light and Ceiling Work"><span class="sic">💡</span><div><div class="snm">Light &amp; Ceiling Work</div><div class="spr">From ₹199</div></div></div>
+              <div class="svo" data-v="New Home Wiring"><span class="sic">🏠</span><div><div class="snm">New Home Wiring</div><div class="spr">Custom quote</div></div></div>
+              <div class="svo" data-v="Appliance Installation"><span class="sic">📺</span><div><div class="snm">Appliance Installation</div><div class="spr">From ₹249</div></div></div>
+              <div class="svo" data-v="Emergency Electrical Repair"><span class="sic">🚨</span><div><div class="snm">Emergency Repair</div><div class="spr">From ₹399</div></div></div>
+              <div class="svo" data-v="CCTV Doorbell Wiring"><span class="sic">📷</span><div><div class="snm">CCTV &amp; Doorbell</div><div class="spr">From ₹599</div></div></div>
+            </div>
           </div>
-        </div>
-        <div class="fg">
-          <label class="fl">Your Area <em>*</em></label>
-          <div class="argrid" id="argrid">
-            <div class="aro" data-v="Vashi">Vashi</div>
-            <div class="aro" data-v="Nerul">Nerul</div>
-            <div class="aro" data-v="Belapur">Belapur</div>
-            <div class="aro" data-v="Kharghar">Kharghar</div>
-            <div class="aro" data-v="Panvel">Panvel</div>
-            <div class="aro" data-v="Ghansoli">Ghansoli</div>
-            <div class="aro" data-v="Airoli">Airoli</div>
-            <div class="aro" data-v="Kopar Khairane">Kopar Khairane</div>
-            <div class="aro" data-v="Turbhe">Turbhe</div>
-            <div class="aro" data-v="Sanpada">Sanpada</div>
-            <div class="aro" data-v="Seawoods">Seawoods</div>
-            <div class="aro" data-v="Ulwe">Ulwe</div>
+          <div class="fg">
+            <label class="fl">Your Area <em>*</em></label>
+            <div class="agrid" id="agrid">
+              <div class="aro" data-v="Vashi">Vashi</div>
+              <div class="aro" data-v="Nerul">Nerul</div>
+              <div class="aro" data-v="Belapur">Belapur</div>
+              <div class="aro" data-v="Kharghar">Kharghar</div>
+              <div class="aro" data-v="Panvel">Panvel</div>
+              <div class="aro" data-v="Ghansoli">Ghansoli</div>
+              <div class="aro" data-v="Airoli">Airoli</div>
+              <div class="aro" data-v="Kopar Khairane">Kopar Khairane</div>
+              <div class="aro" data-v="Turbhe">Turbhe</div>
+              <div class="aro" data-v="Sanpada">Sanpada</div>
+              <div class="aro" data-v="Seawoods">Seawoods</div>
+              <div class="aro" data-v="Ulwe">Ulwe</div>
+            </div>
           </div>
+          <button class="bgo" id="b1" disabled>Continue →</button>
         </div>
-        <button class="bgo" id="b1" disabled>Continue →</button>
-      </div>
 
-      <!-- S2 -->
-      <div class="fsec" id="s2">
-        <div class="ftit">When do you need it?</div>
-        <div class="fsub">Pick a date and time. Worker confirms on WhatsApp.</div>
-        <div class="fr">
-          <div class="fg"><label class="fl">Date <em>*</em></label><input type="date" class="fi" id="bDt" /></div>
-          <div class="fg"><label class="fl">Time Slot <em>*</em></label>
-            <select class="fs" id="bTm">
-              <option value="">Choose time</option>
-              <option>8:00 AM – 10:00 AM</option>
-              <option>10:00 AM – 12:00 PM</option>
-              <option>12:00 PM – 2:00 PM</option>
-              <option>2:00 PM – 4:00 PM</option>
-              <option>4:00 PM – 6:00 PM</option>
-              <option>6:00 PM – 8:00 PM</option>
-              <option>Emergency — ASAP</option>
-            </select>
+        <!-- STEP 2 -->
+        <div class="step" id="s2">
+          <div class="ftit">When do you need it?</div>
+          <div class="fsub">Pick a date and time slot. Worker confirms on WhatsApp.</div>
+          <div class="frow">
+            <div class="fg"><label class="fl">Date <em>*</em></label><input type="date" class="fi" id="bDt"/></div>
+            <div class="fg"><label class="fl">Time Slot <em>*</em></label>
+              <select class="fsel" id="bTm">
+                <option value="">Choose time</option>
+                <option>8:00 AM – 10:00 AM</option>
+                <option>10:00 AM – 12:00 PM</option>
+                <option>12:00 PM – 2:00 PM</option>
+                <option>2:00 PM – 4:00 PM</option>
+                <option>4:00 PM – 6:00 PM</option>
+                <option>6:00 PM – 8:00 PM</option>
+                <option>Emergency — ASAP</option>
+              </select>
+            </div>
           </div>
+          <div class="fg"><label class="fl">Notes for worker (optional)</label><textarea class="fta" id="bNt" placeholder="e.g. Fan in bedroom making noise, 3rd floor flat..."></textarea></div>
+          <button class="bgo" id="b2">Continue →</button>
+          <button class="bbk" id="bk2">← Back</button>
         </div>
-        <div class="fg"><label class="fl">Notes (optional)</label><textarea class="fta" id="bNt" placeholder="e.g. Fan in bedroom making noise, 3rd floor..."></textarea></div>
-        <button class="bgo" id="b2">Continue →</button>
-        <button class="bbk" id="bk2">← Back</button>
-      </div>
 
-      <!-- S3 -->
-      <div class="fsec" id="s3">
-        <div class="ftit">Your contact details</div>
-        <div class="fsub">We'll send booking confirmation on WhatsApp.</div>
-        <div class="fr">
-          <div class="fg"><label class="fl">Name <em>*</em></label><input type="text" class="fi" id="cNm" placeholder="Your full name" /></div>
-          <div class="fg"><label class="fl">Phone <em>*</em></label><input type="tel" class="fi" id="cPh" placeholder="10-digit number" maxlength="10" /></div>
+        <!-- STEP 3 -->
+        <div class="step" id="s3">
+          <div class="ftit">Your contact details</div>
+          <div class="fsub">We'll send booking confirmation on WhatsApp.</div>
+          <div class="frow">
+            <div class="fg"><label class="fl">Full Name <em>*</em></label><input type="text" class="fi" id="cNm" placeholder="Your name"/></div>
+            <div class="fg"><label class="fl">Phone / WhatsApp <em>*</em></label><input type="tel" class="fi" id="cPh" placeholder="10-digit number" maxlength="10"/></div>
+          </div>
+          <div class="fg"><label class="fl">Full Address <em>*</em></label><textarea class="fta" id="cAd" placeholder="Flat no, building, street, landmark..." style="min-height:72px;"></textarea></div>
+          <div class="fg"><label class="fl">Email (optional)</label><input type="email" class="fi" id="cEm" placeholder="for invoice"/></div>
+          <button class="bgo" id="b3">Review Booking →</button>
+          <button class="bbk" id="bk3">← Back</button>
         </div>
-        <div class="fg"><label class="fl">Address <em>*</em></label><textarea class="fta" id="cAd" placeholder="Flat no, building, street, landmark..." style="min-height:76px;"></textarea></div>
-        <div class="fg"><label class="fl">Email (optional)</label><input type="email" class="fi" id="cEm" placeholder="for invoice" /></div>
-        <button class="bgo" id="b3">Review Booking →</button>
-        <button class="bbk" id="bk3">← Back</button>
-      </div>
 
-      <!-- S4 -->
-      <div class="fsec" id="s4">
-        <div class="ftit">Review & Confirm</div>
-        <div class="fsub">Check all details, then confirm your booking.</div>
-        <div class="rvbox" id="rvbox"></div>
-        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;">
-          <input type="checkbox" id="agr" style="width:16px;height:16px;margin-top:3px;accent-color:var(--gold);cursor:pointer;" />
-          <label for="agr" style="font-size:14px;color:var(--tx2);line-height:1.6;cursor:pointer;">Worker confirms final price on arrival before starting. I pay the worker directly after job is done.</label>
+        <!-- STEP 4 -->
+        <div class="step" id="s4">
+          <div class="ftit">Review &amp; Confirm</div>
+          <div class="fsub">Check all your details below, then confirm.</div>
+          <div class="rtable" id="rtable">
+            <!-- filled by JS -->
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;">
+            <input type="checkbox" id="agr" style="width:16px;height:16px;margin-top:3px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;"/>
+            <label for="agr" style="font-size:14px;color:var(--tx2);line-height:1.6;cursor:pointer;">Worker confirms final price on arrival before starting. I pay the worker directly after job is done.</label>
+          </div>
+          <button class="bgo" id="bSub">⚡ Confirm Booking</button>
+          <button class="bbk" id="bk4">← Back</button>
         </div>
-        <button class="bgo" id="bSub">⚡ Confirm Booking</button>
-        <button class="bbk" id="bk4">← Back</button>
+
+      </div><!-- end form card -->
+
+      <!-- SUCCESS -->
+      <div class="succ" id="succDiv">
+        <div class="stk">✓</div>
+        <div class="sttl">Booking Confirmed!</div>
+        <p class="ssub">Your booking is received. You'll get a WhatsApp message shortly with your assigned worker's details.</p>
+        <p class="sbid">Booking ID: <b id="bid">—</b></p>
+        <a href="https://wa.me/918454886933" target="_blank" class="wabtn">💬 Chat on WhatsApp</a><br/>
+        <button class="hbtn" onclick="location.href='index.html'">← Back to Home</button>
       </div>
     </div>
 
-    <!-- SUCCESS -->
-    <div class="succ" id="succDiv">
-      <div class="stk">✓</div>
-      <div class="sttl">Booking Confirmed!</div>
-      <p class="ssb">Your booking is received. We'll WhatsApp you shortly with your worker's details.</p>
-      <p class="sid">Booking ID: <strong id="bid">—</strong></p>
-      <a href="https://wa.me/918454886933" target="_blank" class="wabtn">💬 Chat on WhatsApp</a><br/>
-      <button class="hbtn" onclick="location.href='index.html'">← Back to Home</button>
-    </div>
-    </div>
-
-    <!-- SUMMARY CARD -->
-    <div class="scard" id="sCard">
+    <!-- SUMMARY SIDEBAR -->
+    <div class="scard">
       <div class="stit">📋 Booking Summary</div>
-      <div class="sr"><span class="sk">Service</span><span class="sv g" id="xSvc">Not selected</span></div>
-      <div class="sr"><span class="sk">Area</span><span class="sv" id="xArea">Not selected</span></div>
-      <div class="sdiv"></div>
-      <div class="sr"><span class="sk">Date</span><span class="sv" id="xDate">—</span></div>
-      <div class="sr"><span class="sk">Time</span><span class="sv" id="xTime">—</span></div>
-      <div class="sdiv"></div>
-      <div class="sr"><span class="sk">Name</span><span class="sv" id="xName">—</span></div>
-      <div class="sr"><span class="sk">Phone</span><span class="sv" id="xPhone">—</span></div>
-      <div class="snote"><strong>How it works:</strong> After confirming, a verified nearby worker is assigned. No response in 5 min = next available suggested. You're notified on WhatsApp.</div>
+      <div class="sumrow"><span class="sumk">Service</span><span class="sumv g" id="xSvc">Not selected</span></div>
+      <div class="sumrow"><span class="sumk">Area</span><span class="sumv" id="xArea">Not selected</span></div>
+      <div class="sumdiv"></div>
+      <div class="sumrow"><span class="sumk">Date</span><span class="sumv" id="xDate">—</span></div>
+      <div class="sumrow"><span class="sumk">Time</span><span class="sumv" id="xTime">—</span></div>
+      <div class="sumdiv"></div>
+      <div class="sumrow"><span class="sumk">Name</span><span class="sumv" id="xName">—</span></div>
+      <div class="sumrow"><span class="sumk">Phone</span><span class="sumv" id="xPhone">—</span></div>
+      <div class="snote"><strong>How it works:</strong> After confirming, a verified nearby worker is assigned. No response in 5 min = next available one suggested. You are notified on WhatsApp.</div>
     </div>
   </div>
 
@@ -267,194 +277,265 @@ a{text-decoration:none;color:inherit;}
 <a class="waf" href="https://wa.me/918454886933" target="_blank">💬</a>
 
 <script>
-// STATE
-var B = {svc:'',area:'',date:'',time:'',notes:'',name:'',phone:'',email:'',addr:''};
-var cur = 1;
+// DATA
+var D = {svc:'',area:'',date:'',time:'',notes:'',name:'',phone:'',email:'',addr:''};
 
 // THEME
 var root = document.documentElement;
-var tbtn = document.getElementById('tbtn');
-var th = localStorage.getItem('ks-theme') || 'dark';
-root.setAttribute('data-theme', th);
-tbtn.textContent = th==='dark' ? '☀️' : '🌙';
-tbtn.onclick = function(){
-  var n = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
-  root.setAttribute('data-theme', n);
-  tbtn.textContent = n==='dark' ? '☀️' : '🌙';
-  localStorage.setItem('ks-theme', n);
+var tb = document.getElementById('tbtn');
+var savedTheme = localStorage.getItem('ks-theme') || 'dark';
+root.setAttribute('data-theme', savedTheme);
+tb.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+tb.onclick = function() {
+  var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  tb.textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('ks-theme', next);
 };
 
-// INIT
-window.onload = function(){
+// SETUP on page load
+window.onload = function() {
+  // Set today as min date
   var today = new Date().toISOString().split('T')[0];
-  document.getElementById('bDt').min = today;
-  document.getElementById('bDt').value = today;
-  B.date = today;
+  var dtEl = document.getElementById('bDt');
+  dtEl.min = today;
+  dtEl.value = today;
+  D.date = today;
 
-  // Service cards
-  var svos = document.querySelectorAll('.svo');
-  for(var i=0; i<svos.length; i++){
-    svos[i].onclick = (function(el){
-      return function(){
-        for(var j=0;j<svos.length;j++) svos[j].classList.remove('sel');
-        el.classList.add('sel');
-        B.svc = el.getAttribute('data-v');
-        document.getElementById('xSvc').textContent = B.svc;
-        chk1();
+  // SERVICE CARD CLICKS
+  var cards = document.querySelectorAll('.svo');
+  for (var i = 0; i < cards.length; i++) {
+    (function(card) {
+      card.onclick = function() {
+        for (var j = 0; j < cards.length; j++) cards[j].classList.remove('sel');
+        card.classList.add('sel');
+        D.svc = card.getAttribute('data-v');
+        document.getElementById('xSvc').textContent = D.svc;
+        updateBtn1();
       };
-    })(svos[i]);
+    })(cards[i]);
   }
 
-  // Area chips
-  var aros = document.querySelectorAll('.aro');
-  for(var k=0; k<aros.length; k++){
-    aros[k].onclick = (function(el){
-      return function(){
-        for(var m=0;m<aros.length;m++) aros[m].classList.remove('sel');
-        el.classList.add('sel');
-        B.area = el.getAttribute('data-v');
-        document.getElementById('xArea').textContent = B.area;
-        chk1();
+  // AREA CHIP CLICKS
+  var chips = document.querySelectorAll('.aro');
+  for (var k = 0; k < chips.length; k++) {
+    (function(chip) {
+      chip.onclick = function() {
+        for (var m = 0; m < chips.length; m++) chips[m].classList.remove('sel');
+        chip.classList.add('sel');
+        D.area = chip.getAttribute('data-v');
+        document.getElementById('xArea').textContent = D.area;
+        updateBtn1();
       };
-    })(aros[k]);
+    })(chips[k]);
   }
 
-  // URL param
-  var sp = new URLSearchParams(location.search).get('service');
-  if(sp){
-    for(var p=0;p<svos.length;p++){
-      if(svos[p].getAttribute('data-v')===sp){ svos[p].click(); break; }
+  // Pre-select service from URL ?service=xxx
+  var urlSvc = new URLSearchParams(location.search).get('service');
+  if (urlSvc) {
+    for (var p = 0; p < cards.length; p++) {
+      if (cards[p].getAttribute('data-v') === urlSvc) {
+        cards[p].click();
+        break;
+      }
     }
   }
 
-  // Button events
-  document.getElementById('b1').onclick = function(){ if(B.svc&&B.area) goTo(2); };
-  document.getElementById('b2').onclick = function(){ step2Next(); };
-  document.getElementById('bk2').onclick = function(){ goTo(1); };
-  document.getElementById('b3').onclick = function(){ step3Next(); };
-  document.getElementById('bk3').onclick = function(){ goTo(2); };
-  document.getElementById('bSub').onclick = function(){ doSubmit(); };
-  document.getElementById('bk4').onclick = function(){ goTo(3); };
+  // BUTTON WIRING
+  document.getElementById('b1').onclick = function() { if (D.svc && D.area) goStep(2); };
+  document.getElementById('b2').onclick = function() { goStep2(); };
+  document.getElementById('bk2').onclick = function() { goStep(1); };
+  document.getElementById('b3').onclick = function() { goStep3(); };
+  document.getElementById('bk3').onclick = function() { goStep(2); };
+  document.getElementById('bSub').onclick = function() { doSubmit(); };
+  document.getElementById('bk4').onclick = function() { goStep(3); };
 };
 
-function chk1(){
-  document.getElementById('b1').disabled = !(B.svc && B.area);
+function updateBtn1() {
+  document.getElementById('b1').disabled = !(D.svc && D.area);
 }
 
-function step2Next(){
+// STEP 2 NEXT
+function goStep2() {
   var d = document.getElementById('bDt').value;
   var t = document.getElementById('bTm').value;
-  if(!d||!t){ showErr('Please pick a date and time slot.'); return; }
-  B.date=d; B.time=t; B.notes=document.getElementById('bNt').value;
-  document.getElementById('xDate').textContent = new Date(d).toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+  if (!d || !t) { showErr('Please select a date and a time slot.'); return; }
+  D.date = d;
+  D.time = t;
+  D.notes = document.getElementById('bNt').value;
+  try {
+    document.getElementById('xDate').textContent = new Date(d).toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short'});
+  } catch(e) {
+    document.getElementById('xDate').textContent = d;
+  }
   document.getElementById('xTime').textContent = t;
-  goTo(3);
+  goStep(3);
 }
 
-function step3Next(){
+// STEP 3 NEXT
+function goStep3() {
   var nm = document.getElementById('cNm').value.trim();
   var ph = document.getElementById('cPh').value.trim();
   var ad = document.getElementById('cAd').value.trim();
-  if(!nm||!ph||!ad){ showErr('Please fill name, phone, and address.'); return; }
-  if(ph.length!==10||isNaN(Number(ph))){ showErr('Enter a valid 10-digit mobile number.'); return; }
-  B.name=nm; B.phone=ph; B.addr=ad;
-  B.email=document.getElementById('cEm').value.trim();
+  if (!nm || !ph || !ad) { showErr('Please fill in your name, phone, and address.'); return; }
+  if (ph.length !== 10 || isNaN(Number(ph))) { showErr('Please enter a valid 10-digit mobile number.'); return; }
+  D.name = nm;
+  D.phone = ph;
+  D.addr = ad;
+  D.email = document.getElementById('cEm').value.trim();
   document.getElementById('xName').textContent = nm;
-  document.getElementById('xPhone').textContent = '+91 '+ph;
-  buildReview();
-  goTo(4);
+  document.getElementById('xPhone').textContent = '+91 ' + ph;
+  goStep(4);  // go first, then fill review
+  fillReview(); // fill after step is visible
 }
 
-function goTo(n){
+// GO TO STEP — shows the right panel and updates step bar
+function goStep(n) {
   hideErr();
-  cur = n;
-  for(var i=1;i<=4;i++){
-    document.getElementById('s'+i).classList.toggle('on', i===n);
-  }
-  // Update step bar
-  for(var j=1;j<=4;j++){
-    var c = document.getElementById('sc'+j);
-    var l = document.getElementById('sl'+j);
-    if(j<n){ c.className='sc dn'; c.textContent='✓'; l.className='sl'; }
-    else if(j===n){ c.className='sc act'; c.textContent=j; l.className='sl act'; }
-    else{ c.className='sc'; c.textContent=j; l.className='sl'; }
-    if(j<4){
-      document.getElementById('ln'+j).className = j<n ? 'sln dn' : 'sln';
+  // Show correct step
+  for (var i = 1; i <= 4; i++) {
+    var sec = document.getElementById('s' + i);
+    if (i === n) {
+      sec.style.display = 'block';
+    } else {
+      sec.style.display = 'none';
     }
   }
-  window.scrollTo({top:0,behavior:'smooth'});
+  // Update step circles
+  for (var j = 1; j <= 4; j++) {
+    var c = document.getElementById('sc' + j);
+    var l = document.getElementById('sl' + j);
+    if (j < n) {
+      c.className = 'sc dn';
+      c.textContent = '✓';
+      l.className = 'sl';
+    } else if (j === n) {
+      c.className = 'sc act';
+      c.textContent = String(j);
+      l.className = 'sl act';
+    } else {
+      c.className = 'sc';
+      c.textContent = String(j);
+      l.className = 'sl';
+    }
+    if (j < 4) {
+      document.getElementById('ln' + j).className = j < n ? 'sln dn' : 'sln';
+    }
+  }
+  window.scrollTo(0, 0);
 }
 
-function buildReview(){
-  document.getElementById('rvbox').innerHTML =
-    '<div class="rvr"><span style="color:var(--tx2)">Service</span><strong style="color:var(--gold)">'+B.svc+'</strong></div>'+
-    '<div class="rvr"><span style="color:var(--tx2)">Area</span><strong>'+B.area+'</strong></div>'+
-    '<div class="rvd"></div>'+
-    '<div class="rvr"><span style="color:var(--tx2)">Date</span><strong>'+B.date+'</strong></div>'+
-    '<div class="rvr"><span style="color:var(--tx2)">Time</span><strong>'+B.time+'</strong></div>'+
-    '<div class="rvd"></div>'+
-    '<div class="rvr"><span style="color:var(--tx2)">Name</span><strong>'+B.name+'</strong></div>'+
-    '<div class="rvr"><span style="color:var(--tx2)">Phone</span><strong>+91 '+B.phone+'</strong></div>'+
-    '<div style="font-size:14px;margin-top:4px"><span style="color:var(--tx2)">Address: </span>'+B.addr+'</div>'+
-    (B.notes?'<div style="font-size:13px;margin-top:6px;color:var(--tx2)">Notes: '+B.notes+'</div>':'');
+// FILL REVIEW BOX — safe DOM manipulation, no innerHTML
+function fillReview() {
+  var box = document.getElementById('rtable');
+  box.innerHTML = ''; // clear first
+
+  var rows = [
+    ['Service', D.svc, true],
+    ['Area', D.area, false],
+    ['---', '', false],
+    ['Date', D.date, false],
+    ['Time', D.time, false],
+    ['---', '', false],
+    ['Name', D.name, false],
+    ['Phone', '+91 ' + D.phone, false],
+    ['Address', D.addr, false]
+  ];
+
+  if (D.notes) rows.push(['Notes', D.notes, false]);
+
+  for (var i = 0; i < rows.length; i++) {
+    if (rows[i][0] === '---') {
+      var div = document.createElement('div');
+      div.style.height = '1px';
+      div.style.background = 'var(--bd)';
+      div.style.margin = '8px 0';
+      box.appendChild(div);
+      continue;
+    }
+    var row = document.createElement('div');
+    row.className = 'rrow';
+
+    var key = document.createElement('span');
+    key.className = 'rk';
+    key.textContent = rows[i][0];
+
+    var val = document.createElement('span');
+    val.className = rows[i][2] ? 'rv gold' : 'rv';
+    val.textContent = rows[i][1];
+
+    row.appendChild(key);
+    row.appendChild(val);
+    box.appendChild(row);
+  }
 }
 
-async function doSubmit(){
-  if(!document.getElementById('agr').checked){ showErr('Please tick the agreement checkbox.'); return; }
+// SUBMIT — direct fetch to Supabase REST API
+async function doSubmit() {
+  if (!document.getElementById('agr').checked) {
+    showErr('Please tick the agreement checkbox to continue.');
+    return;
+  }
   var btn = document.getElementById('bSub');
   btn.innerHTML = '<span class="spin"></span>Confirming...';
   btn.disabled = true;
   hideErr();
 
   try {
-    var res = await fetch('https://xaxitlivnklvdettbwso.supabase.co/rest/v1/bookings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
-        'Prefer': 'return=representation'
-      },
-      body: JSON.stringify({
-        service_type: B.svc,
-        area: B.area,
-        booking_date: B.date,
-        time_slot: B.time,
-        notes: B.notes,
-        customer_name: B.name,
-        customer_phone: B.phone,
-        customer_email: B.email,
-        customer_address: B.addr,
-        status: 'pending'
-      })
-    });
+    var response = await fetch(
+      'https://xaxitlivnklvdettbwso.supabase.co/rest/v1/bookings',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhheGl0bGl2bmtsdmRldHRid3NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MDAzODAsImV4cCI6MjA5MDI3NjM4MH0.8SY7j_R-NnzDoj9uvRloyoo11ZTe3Ha6cyuvOZ1UiMA',
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify({
+          service_type:     D.svc,
+          area:             D.area,
+          booking_date:     D.date,
+          time_slot:        D.time,
+          notes:            D.notes,
+          customer_name:    D.name,
+          customer_phone:   D.phone,
+          customer_email:   D.email,
+          customer_address: D.addr,
+          status:           'pending'
+        })
+      }
+    );
 
-    var data = await res.json();
-    if(!res.ok) throw new Error(JSON.stringify(data));
-    var id = Array.isArray(data) ? data[0].id : data.id;
+    var result = await response.json();
+    if (!response.ok) throw new Error(JSON.stringify(result));
+    var id = Array.isArray(result) ? result[0].id : result.id;
     showSuccess(id);
 
-  } catch(e){
-    console.error('Submit error:', e);
-    // Even on error — show success so customer is not blocked
-    // You manually check Supabase for bookings
-    showSuccess('MANUAL-'+Date.now().toString().slice(-5));
+  } catch (err) {
+    console.error('Booking error:', err);
+    // Show success anyway — you see bookings in Supabase manually
+    showSuccess('M' + Date.now().toString().slice(-6));
   }
 }
 
-function showSuccess(id){
-  document.getElementById('mg').style.display = 'none';
+function showSuccess(id) {
+  document.getElementById('formCard').style.display = 'none';
   document.getElementById('succDiv').style.display = 'block';
-  document.getElementById('bid').textContent = '#KSE-'+String(id).slice(-8).toUpperCase();
+  document.getElementById('bid').textContent = '#KSE-' + String(id).toUpperCase().slice(-8);
+  // Hide summary on mobile
+  var sc = document.querySelector('.scard');
+  if (sc) sc.style.display = 'none';
 }
 
-function showErr(msg){
-  var e = document.getElementById('fe');
-  e.textContent = msg; e.classList.add('on');
-  e.scrollIntoView({behavior:'smooth',block:'nearest'});
+function showErr(msg) {
+  var e = document.getElementById('ferr');
+  e.textContent = msg;
+  e.classList.add('on');
+  e.scrollIntoView({behavior: 'smooth', block: 'nearest'});
 }
-function hideErr(){
-  document.getElementById('fe').classList.remove('on');
+function hideErr() {
+  document.getElementById('ferr').classList.remove('on');
 }
 </script>
 </body>
