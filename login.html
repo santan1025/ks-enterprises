@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — K.S. Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0d1b2a;--navy2:#1a2d40;--gold:#f5a623;--gold2:#ffc24a;--text:#f0f4f8;--text2:rgba(240,244,248,0.65);--text3:rgba(240,244,248,0.35);--border:rgba(245,166,35,0.15);--border2:rgba(255,255,255,0.07);--green:#22c55e;--red:#ef4444}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+nav{background:rgba(13,27,42,0.97);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;backdrop-filter:blur(12px)}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nlogo-icon{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nlogo-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text)}
+.nlogo-text span{color:var(--gold)}
+.page{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.login-wrap{width:100%;max-width:420px}
+.login-tabs{display:flex;gap:0;background:rgba(26,45,64,0.6);border-radius:12px;padding:4px;margin-bottom:28px}
+.ltab{flex:1;padding:10px;border:none;background:transparent;color:var(--text2);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border-radius:9px;transition:all 0.2s}
+.ltab.active{background:var(--gold);color:var(--navy)}
+.login-card{background:rgba(26,45,64,0.9);border:1px solid var(--border);border-radius:16px;padding:32px}
+.login-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:6px}
+.login-sub{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:6px}
+input{width:100%;padding:12px 14px;background:var(--navy);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
+input:focus{border-color:var(--gold)}
+.btn-main{width:100%;padding:13px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.btn-main:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-wa{width:100%;padding:12px;background:rgba(37,211,102,0.12);color:#25d366;border:1px solid rgba(37,211,102,0.25);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;text-decoration:none}
+.btn-wa:hover{background:rgba(37,211,102,0.2)}
+.divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--text3);font-size:13px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border2)}
+.err{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--red);margin-top:10px;display:none}
+.register-link{text-align:center;margin-top:20px;font-size:13px;color:var(--text3)}
+.register-link a{color:var(--gold);text-decoration:none;font-weight:600}
+.register-link a:hover{text-decoration:underline}
+.panel{display:none}.panel.active{display:block}
+.admin-note{background:rgba(245,166,35,0.08);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text3);margin-top:14px;text-align:center}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nlogo" href="index.html">
+    <div class="nlogo-icon">⚡</div>
+    <div class="nlogo-text">K.S. <span>Enterprises</span></div>
+  </a>
+</nav>
+
+<div class="page">
+  <div class="login-wrap">
+    <div class="login-tabs">
+      <button class="ltab active" onclick="switchTab('customer',this)">I'm a Customer</button>
+      <button class="ltab" onclick="switchTab('worker',this)">I'm a Worker</button>
+    </div>
+
+    <!-- CUSTOMER PANEL -->
+    <div class="panel active" id="panel-customer">
+      <div class="login-card">
+        <div class="login-title">Customer Login</div>
+        <div class="login-sub">Login to view your bookings, track your service, and manage your account.</div>
+        <div class="form-group">
+          <label>PHONE NUMBER</label>
+          <input type="tel" id="c-phone" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-group">
+          <label>OTP / PASSWORD</label>
+          <input type="password" id="c-pass" placeholder="Enter OTP or password">
+        </div>
+        <button class="btn-main" onclick="customerLogin()">Login →</button>
+        <div class="err" id="c-err">Incorrect phone or password. Please try again.</div>
+        <div class="divider">or</div>
+        <a class="btn-wa" href="https://wa.me/918454886933?text=Hi!%20I%20want%20to%20login%20and%20check%20my%20booking%20status." target="_blank">
+          💬 Continue via WhatsApp
+        </a>
+        <div class="register-link">New customer? <a href="book.html">Book your first service →</a></div>
+        <div class="admin-note">💡 Customer accounts are managed via WhatsApp. Contact us to set up your login.</div>
+      </div>
+    </div>
+
+    <!-- WORKER PANEL -->
+    <div class="panel" id="panel-worker">
+      <div class="login-card">
+        <div class="login-title">Worker Login</div>
+        <div class="login-sub">Login to view your assigned jobs, update your status, and track your earnings.</div>
+        <div class="form-group">
+          <label>REGISTERED PHONE</label>
+          <input type="tel" id="w-phone" placeholder="+91 XXXXX XXXXX">
+        </div>
+        <div class="form-group">
+          <label>PASSWORD</label>
+          <input type="password" id="w-pass" placeholder="Enter your worker password">
+        </div>
+        <button class="btn-main" onclick="workerLogin()">Login →</button>
+        <div class="err" id="w-err">Incorrect phone or password. Contact K.S. Enterprises team.</div>
+        <div class="divider">or</div>
+        <a class="btn-wa" href="https://wa.me/918454886933?text=Hi!%20I'm%20a%20registered%20K.S.%20worker.%20I%20need%20help%20logging%20in." target="_blank">
+          💬 Get Help via WhatsApp
+        </a>
+        <div class="register-link">Not registered yet? <a href="worker-register.html">Apply to join →</a></div>
+        <div class="admin-note">⚡ Worker dashboard is managed by K.S. Enterprises admin team. Contact us for access.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(tab, btn){
+  document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+function customerLogin(){
+  var phone = document.getElementById('c-phone').value.trim();
+  var pass = document.getElementById('c-pass').value.trim();
+  var err = document.getElementById('c-err');
+  if(!phone || !pass){err.style.display='block';err.textContent='Please enter your phone and password.';return;}
+  // Currently redirect to WhatsApp for account management
+  err.style.display='none';
+  var msg = 'Hi K.S. Enterprises! I want to check my booking status. My phone: ' + phone;
+  window.open('https://wa.me/918454886933?text='+encodeURIComponent(msg),'_blank');
+}
+
+function workerLogin(){
+  var phone = document.getElementById('w-phone').value.trim();
+  var pass = document.getElementById('w-pass').value.trim();
+  var err = document.getElementById('w-err');
+  if(!phone || !pass){err.style.display='block';err.textContent='Please enter your phone and password.';return;}
+  err.style.display='none';
+  var msg = 'Hi! I am a registered K.S. worker. My phone: ' + phone + '. I need to login to my worker dashboard.';
+  window.open('https://wa.me/918454886933?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
+</body>
+</html>

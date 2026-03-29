@@ -378,38 +378,110 @@ nav{background:rgba(13,27,42,0.97);border-bottom:1px solid var(--border);padding
 // ── WORKER DATA (loaded from URL param or default) ──
 const workers = {
   1: {
-    initials:'RS',name:'Rahul Sharma',title:'Senior Electrician',
-    rating:4.9,reviews:128,exp:'8 years',jobs:312,repeat:84,response:'8 mins',
+    initials:'RS',name:'Ravi Shinde',title:'Senior Electrician',
+    rating:4.9,reviews:87,exp:'9 years',jobs:340,repeat:88,response:'< 3 min',
     status:'online',phone:'9022365661',
-    areas:['Airoli','Ghansoli','Rabale','Koparkhairane'],
-    skills:['Household Wiring','MCB Fitting','Switchboard','Meter Cabin','Lighting','AC Points','Geyser'],
+    areas:['Vashi','Nerul','Sanpada'],
+    skills:['Household Wiring','MCB Fitting','Fan Repair','AC Fitting','Lighting'],
     services:[
       {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
       {icon:'🔌',name:'MCB / Patti Fitting',price:'₹400/pt'},
+      {icon:'🌀',name:'Fan Repair / Fitting',price:'₹400/pt'},
+      {icon:'❄️',name:'AC Point Wiring',price:'₹400/pt'},
       {icon:'💡',name:'Lighting Installation',price:'₹400/pt'},
       {icon:'🔧',name:'Switchboard Repair',price:'₹400/pt'},
-      {icon:'📦',name:'Meter Cabin Fitting',price:'₹400/pt'},
-      {icon:'❄️',name:'AC Point Wiring',price:'₹400/pt'},
-      {icon:'🚿',name:'Geyser Point',price:'₹400/pt'},
-      {icon:'🎥',name:'CCTV Wiring',price:'Extra'},
     ],
-    ratingDist:[{stars:5,count:94},{stars:4,count:22},{stars:3,count:8},{stars:2,count:3},{stars:1,count:1}],
-    color:'#f5a623'
+    ratingDist:[{stars:5,count:65},{stars:4,count:16},{stars:3,count:4},{stars:2,count:1},{stars:1,count:1}],
+    color:'#FACC15'
   },
   2: {
-    initials:'AK',name:'Ajay Kumar',title:'Electrician & AC Technician',
-    rating:4.7,reviews:89,exp:'5 years',jobs:198,repeat:76,response:'12 mins',
+    initials:'MK',name:'Mahesh Kamble',title:'Electrician',
+    rating:4.8,reviews:62,exp:'6 years',jobs:210,repeat:80,response:'< 5 min',
     status:'online',phone:'8767569788',
-    areas:['Vashi','Nerul','Sanpada','Turbhe'],
-    skills:['AC Fitting','Fan Repair','Wiring','Switchboard'],
+    areas:['Nerul','Belapur','Kharghar'],
+    skills:['Switchboard','Light Fitting','CCTV','Wiring'],
     services:[
-      {icon:'❄️',name:'AC Fitting & Repair',price:'₹400/pt'},
-      {icon:'🌀',name:'Fan Repair / Fitting',price:'₹400/pt'},
+      {icon:'🔧',name:'Switchboard Repair',price:'₹400/pt'},
+      {icon:'💡',name:'Light Fitting',price:'₹400/pt'},
+      {icon:'🎥',name:'CCTV Wiring',price:'Extra'},
       {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
-      {icon:'🔧',name:'Switchboard Work',price:'₹400/pt'},
     ],
-    ratingDist:[{stars:5,count:62},{stars:4,count:18},{stars:3,count:7},{stars:2,count:1},{stars:1,count:1}],
+    ratingDist:[{stars:5,count:46},{stars:4,count:11},{stars:3,count:3},{stars:2,count:1},{stars:1,count:1}],
     color:'#3b82f6'
+  },
+  3: {
+    initials:'PJ',name:'Prakash Jadhav',title:'Senior Electrician',
+    rating:4.9,reviews:134,exp:'11 years',jobs:520,repeat:91,response:'< 4 min',
+    status:'busy',phone:'9022365661',
+    areas:['Panvel','Kharghar','Ulwe'],
+    skills:['New Wiring','MCB','Appliance Fitting','Emergency Repair'],
+    services:[
+      {icon:'⚡',name:'New Home Wiring',price:'Custom'},
+      {icon:'🔌',name:'MCB / Fuse Box',price:'₹400/pt'},
+      {icon:'🔧',name:'Appliance Installation',price:'₹249+'},
+      {icon:'🚨',name:'Emergency Repair',price:'₹399+'},
+    ],
+    ratingDist:[{stars:5,count:104},{stars:4,count:22},{stars:3,count:6},{stars:2,count:1},{stars:1,count:1}],
+    color:'#22c55e'
+  },
+  4: {
+    initials:'SK',name:'Suresh Kadam',title:'Electrician',
+    rating:4.6,reviews:48,exp:'7 years',jobs:175,repeat:74,response:'< 4 min',
+    status:'online',phone:'9022365661',
+    areas:['Airoli','Ghansoli','Kopar Khairane'],
+    skills:['Fan Repair','Switchboard','Light Fitting','Wiring'],
+    services:[
+      {icon:'🌀',name:'Fan Repair / Fitting',price:'₹199+'},
+      {icon:'🔧',name:'Switchboard Work',price:'₹400/pt'},
+      {icon:'💡',name:'Light & Ceiling Work',price:'₹199+'},
+      {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
+    ],
+    ratingDist:[{stars:5,count:34},{stars:4,count:10},{stars:3,count:3},{stars:2,count:1},{stars:1,count:0}],
+    color:'#ec4899'
+  },
+  5: {
+    initials:'AM',name:'Anil More',title:'Plumber',
+    rating:4.8,reviews:93,exp:'8 years',jobs:290,repeat:83,response:'< 4 min',
+    status:'online',phone:'9022365661',
+    areas:['Vashi','Turbhe','Sanpada'],
+    skills:['Pipe Repair','Leakage Fix','Tap Fitting','Drainage'],
+    services:[
+      {icon:'🔧',name:'Pipe Repair',price:'₹299+'},
+      {icon:'💧',name:'Leakage Fix',price:'₹249+'},
+      {icon:'🚰',name:'Tap / Mixer Fitting',price:'₹199+'},
+      {icon:'🪣',name:'Drainage Cleaning',price:'₹349+'},
+    ],
+    ratingDist:[{stars:5,count:70},{stars:4,count:16},{stars:3,count:5},{stars:2,count:1},{stars:1,count:1}],
+    color:'#06b6d4'
+  },
+  6: {
+    initials:'VD',name:'Vikas Dalvi',title:'AC Technician',
+    rating:4.7,reviews:38,exp:'5 years',jobs:140,repeat:78,response:'< 6 min',
+    status:'online',phone:'9022365661',
+    areas:['Kharghar','Belapur','Seawoods'],
+    skills:['AC Service','Gas Refill','AC Repair','AC Installation'],
+    services:[
+      {icon:'❄️',name:'AC Service & Cleaning',price:'₹499+'},
+      {icon:'🔵',name:'Gas Refill',price:'₹799+'},
+      {icon:'🔧',name:'AC Repair',price:'₹399+'},
+      {icon:'⚙️',name:'AC Installation',price:'₹999+'},
+    ],
+    ratingDist:[{stars:5,count:27},{stars:4,count:8},{stars:3,count:2},{stars:2,count:1},{stars:1,count:0}],
+    color:'#818cf8'
+  },
+  7: {
+    initials:'DP',name:'Dinesh Patil',title:'Electrician',
+    rating:4.5,reviews:29,exp:'4 years',jobs:98,repeat:70,response:'< 5 min',
+    status:'offline',phone:'9022365661',
+    areas:['Belapur','Nerul','Seawoods'],
+    skills:['Fan Repair','Wiring','Light Fitting'],
+    services:[
+      {icon:'🌀',name:'Fan Repair / Fitting',price:'₹199+'},
+      {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
+      {icon:'💡',name:'Light Fitting',price:'₹199+'},
+    ],
+    ratingDist:[{stars:5,count:19},{stars:4,count:7},{stars:3,count:2},{stars:2,count:1},{stars:1,count:0}],
+    color:'#ef4444'
   },
 };
 

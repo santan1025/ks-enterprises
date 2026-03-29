@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — K.S. Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0d1b2a;--navy2:#1a2d40;--gold:#f5a623;--gold2:#ffc24a;--text:#f0f4f8;--text2:rgba(240,244,248,0.65);--text3:rgba(240,244,248,0.35);--border:rgba(245,166,35,0.15);--border2:rgba(255,255,255,0.07);--green:#22c55e}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text);min-height:100vh}
+nav{background:rgba(13,27,42,0.97);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
+.nlogo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none}
+.nlogo-icon{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nlogo-text{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--text)}
+.nlogo-text span{color:var(--gold)}
+.ncta{background:var(--gold);color:var(--navy);padding:9px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.ncta:hover{background:var(--gold2)}
+.page{max-width:960px;margin:0 auto;padding:60px 5%}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px}
+.sub{font-size:17px;color:var(--text2);margin-bottom:50px;line-height:1.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.card{background:rgba(26,45,64,0.8);border:1px solid var(--border2);border-radius:16px;padding:28px}
+.card-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:20px;color:var(--text)}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border2)}
+.contact-item:last-child{border:none}
+.ci-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.ci-label{font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:4px}
+.ci-val{font-size:15px;font-weight:600;color:var(--text)}
+.ci-val a{color:var(--gold);text-decoration:none}
+.ci-val a:hover{text-decoration:underline}
+.form-group{margin-bottom:16px}
+label{display:block;font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:6px}
+input,textarea,select{width:100%;padding:11px 14px;background:var(--navy);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
+input:focus,textarea:focus,select:focus{border-color:var(--gold)}
+textarea{resize:none;height:100px}
+.btn-submit{width:100%;padding:13px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.btn-submit:hover{background:var(--gold2);transform:translateY(-1px)}
+.wa-card{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.25);border-radius:16px;padding:28px;text-align:center;margin-top:32px}
+.wa-card p{color:var(--text2);margin-bottom:16px;font-size:15px;line-height:1.6}
+.wa-btn-big{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:14px 28px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;transition:all 0.2s}
+.wa-btn-big:hover{background:#1da851;transform:translateY(-2px)}
+.success-msg{background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--green);margin-top:12px;display:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy2);border:1px solid var(--border);color:var(--text);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:all 0.4s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.waf{position:fixed;bottom:24px;right:24px;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:300;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s}
+.waf:hover{transform:scale(1.1)}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nlogo" href="index.html">
+    <div class="nlogo-icon">⚡</div>
+    <div class="nlogo-text">K.S. <span>Enterprises</span></div>
+  </a>
+  <a class="ncta" href="book.html">Book Now →</a>
+</nav>
+
+<div class="page">
+  <h1>Contact Us ⚡</h1>
+  <p class="sub">Got a question? Need a quote? Want to join as a worker? We're here for you — reach out any time.</p>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <div class="card-title">Get in Touch</div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">CALL / WHATSAPP</div>
+            <div class="ci-val"><a href="tel:+919022365661">+91 9022 365 661</a> — Mr. Suresh Salve</div>
+            <div class="ci-val" style="margin-top:4px"><a href="tel:+918767569788">+91 8767 569 788</a> — Tanmay Salve</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <div class="ci-label">EMAIL</div>
+            <div class="ci-val"><a href="mailto:k.s.enterprises.business.com@gmail.com">k.s.enterprises.business.com@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">ADDRESS</div>
+            <div class="ci-val">95/28, Prajakta Sadan, Shive Colony,<br>Sector 2, Near Gajanan Maharaj Mandir,<br>Airoli, Navi Mumbai – 400708</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">🕐</div>
+          <div>
+            <div class="ci-label">WORKING HOURS</div>
+            <div class="ci-val">Monday – Saturday: 8:00 AM – 8:00 PM</div>
+            <div class="ci-val" style="font-size:13px;color:var(--text3);margin-top:2px">Sunday: Emergency calls only</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <div class="ci-label">SERVICE AREAS</div>
+            <div class="ci-val" style="font-size:13px;line-height:1.7;color:var(--text2)">Airoli, Ghansoli, Rabale, Kopar Khairane, Vashi, Nerul, Belapur, Kharghar, Panvel, Turbhe, Sanpada, Seawoods, Ulwe</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wa-card">
+        <p>Fastest way to reach us — WhatsApp us directly and we'll reply within 15 minutes.</p>
+        <a class="wa-btn-big" href="https://wa.me/918454886933?text=Hi%20K.S.%20Enterprises!%20I%20have%20a%20query." target="_blank">
+          💬 Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Send a Message</div>
+      <div class="form-group">
+        <label>YOUR NAME</label>
+        <input type="text" id="c-name" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label>PHONE NUMBER</label>
+        <input type="tel" id="c-phone" placeholder="+91 XXXXX XXXXX">
+      </div>
+      <div class="form-group">
+        <label>TOPIC</label>
+        <select id="c-topic">
+          <option value="">— Select topic —</option>
+          <option>Book a service</option>
+          <option>Get a quote</option>
+          <option>Join as worker</option>
+          <option>Complaint / issue</option>
+          <option>Partnership / business</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>YOUR AREA</label>
+        <input type="text" id="c-area" placeholder="e.g. Vashi, Nerul, Airoli">
+      </div>
+      <div class="form-group">
+        <label>MESSAGE</label>
+        <textarea id="c-msg" placeholder="Tell us what you need..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="sendContact()">Send Message →</button>
+      <div class="success-msg" id="c-success">✅ Message sent! We'll reply on WhatsApp within 15 minutes.</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<a class="waf" href="https://wa.me/918454886933" target="_blank">💬</a>
+
+<script>
+function sendContact(){
+  var name=document.getElementById('c-name').value.trim();
+  var phone=document.getElementById('c-phone').value.trim();
+  var topic=document.getElementById('c-topic').value;
+  var area=document.getElementById('c-area').value.trim();
+  var msg=document.getElementById('c-msg').value.trim();
+  if(!name||!phone||!topic){showToast('Please fill in name, phone and topic');return;}
+  var waMsg='Hi K.S. Enterprises!\n\n'+
+    '📋 Topic: '+topic+'\n'+
+    '👤 Name: '+name+'\n'+
+    '📞 Phone: '+phone+'\n'+
+    '📍 Area: '+(area||'Not provided')+'\n'+
+    '💬 Message: '+(msg||'—');
+  window.open('https://wa.me/918454886933?text='+encodeURIComponent(waMsg),'_blank');
+  document.getElementById('c-success').style.display='block';
+}
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},3000);
+}
+</script>
+</body>
+</html>
