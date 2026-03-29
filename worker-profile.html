@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worker Profile — K.S. Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b2a;--navy2:#1a2d40;--navy3:#243447;
+  --gold:#f5a623;--gold2:#ffc24a;--gold-light:rgba(245,166,35,0.12);
+  --text:#f0f4f8;--text2:rgba(240,244,248,0.65);--text3:rgba(240,244,248,0.35);
+  --border:rgba(245,166,35,0.15);--border2:rgba(255,255,255,0.06);
+  --green:#22c55e;--red:#ef4444;--amber:#f59e0b;
+  --card:rgba(26,45,64,0.8);--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh}
+
+/* ── NAV ── */
+nav{background:rgba(13,27,42,0.97);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{width:38px;height:38px;object-fit:contain}
+.nav-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--text)}
+.nav-logo-text span{color:var(--gold)}
+.nav-back{display:flex;align-items:center;gap:8px;color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;padding:8px 16px;border:1px solid var(--border2);border-radius:8px}
+.nav-back:hover{color:var(--gold);border-color:var(--border)}
+.nav-back svg{width:16px;height:16px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-book-btn{background:var(--gold);color:var(--navy);padding:9px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:all 0.2s}
+.nav-book-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+
+/* ── HERO PROFILE ── */
+.profile-hero{background:linear-gradient(135deg,var(--navy2),var(--navy3));border-bottom:1px solid var(--border);padding:40px 5%}
+.profile-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:start}
+.profile-avatar-wrap{position:relative;flex-shrink:0}
+.profile-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#c47d0e);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--navy);border:3px solid var(--gold);position:relative}
+.status-badge{position:absolute;bottom:6px;right:6px;width:20px;height:20px;border-radius:50%;border:3px solid var(--navy2)}
+.status-online{background:var(--green)}
+.status-busy{background:var(--amber)}
+.status-offline{background:var(--text3)}
+.profile-main h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:6px}
+.profile-title{font-size:14px;color:var(--gold);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px}
+.profile-meta{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)}
+.meta-item svg{width:14px;height:14px;color:var(--gold);flex-shrink:0}
+.profile-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:12px;padding:4px 12px;border-radius:999px;border:1px solid var(--border);color:var(--text2);background:var(--gold-light)}
+.profile-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;min-width:280px}
+.stat-box{background:var(--navy);border:1px solid var(--border2);border-radius:12px;padding:16px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold)}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:4px;letter-spacing:0.04em}
+
+/* ── MAIN LAYOUT ── */
+.main-wrap{max-width:1100px;margin:0 auto;padding:32px 5%;display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start}
+.section-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+.section-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border2)}
+
+/* ── RATING OVERVIEW ── */
+.rating-overview{display:flex;gap:32px;align-items:center}
+.rating-big{text-align:center;flex-shrink:0}
+.rating-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--gold);line-height:1}
+.stars-row{display:flex;gap:3px;margin:6px 0;justify-content:center}
+.star{font-size:18px}
+.star.filled{color:var(--gold)}
+.star.half{color:var(--gold);opacity:0.5}
+.star.empty{color:var(--text3)}
+.rating-count{font-size:12px;color:var(--text3)}
+.rating-bars{flex:1}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:13px}
+.bar-label{color:var(--text2);width:36px;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:7px;background:var(--border2);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width 1s ease}
+.bar-count{color:var(--text3);width:24px;font-size:12px;flex-shrink:0}
+
+/* ── REVIEWS ── */
+.review-filters{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.rf-btn{padding:6px 14px;border-radius:999px;border:1px solid var(--border2);background:transparent;color:var(--text2);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.2s}
+.rf-btn:hover,.rf-btn.active{background:var(--gold-light);border-color:var(--border);color:var(--gold)}
+.review-card{padding:18px 0;border-bottom:1px solid var(--border2)}
+.review-card:last-child{border:none;padding-bottom:0}
+.review-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.reviewer-info{display:flex;align-items:center;gap:12px}
+.reviewer-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;flex-shrink:0}
+.reviewer-name{font-weight:600;font-size:14px;margin-bottom:2px}
+.reviewer-area{font-size:12px;color:var(--text3)}
+.review-rating{display:flex;gap:2px}
+.review-star{font-size:13px}
+.review-text{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:8px}
+.review-service-tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;background:var(--gold-light);color:var(--gold);font-weight:500}
+.review-date{font-size:11px;color:var(--text3)}
+
+/* ── SERVICES LIST ── */
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.service-item{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--navy);border:1px solid var(--border2);border-radius:10px;font-size:13px;color:var(--text2)}
+.service-item:hover{border-color:var(--border);color:var(--text)}
+.service-icon{font-size:20px;flex-shrink:0}
+.service-price{margin-left:auto;color:var(--gold);font-weight:600;font-size:12px;flex-shrink:0}
+
+/* ── AREA COVERAGE ── */
+.areas-list{display:flex;flex-wrap:wrap;gap:8px}
+.area-pill{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:var(--gold-light);color:var(--text2);font-size:13px;display:flex;align-items:center;gap:6px}
+.area-pill svg{width:12px;height:12px;color:var(--gold)}
+
+/* ── WORK PHOTOS ── */
+.work-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.work-photo{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--navy);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;transition:transform 0.2s}
+.work-photo:hover{transform:scale(1.03);border-color:var(--border)}
+
+/* ── BOOKING CARD ── */
+.booking-card{background:var(--navy2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:sticky;top:84px}
+.booking-status{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600}
+.booking-status.online{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.2)}
+.booking-status.busy{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.2)}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dot-green{background:var(--green)}
+.dot-amber{background:var(--amber)}
+.book-rate{margin-bottom:20px;padding:14px;background:var(--navy);border-radius:10px;border:1px solid var(--border2)}
+.rate-label{font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:4px}
+.rate-val{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--gold)}
+.rate-note{font-size:11px;color:var(--text3);margin-top:3px}
+.book-form label{display:block;font-size:11px;color:var(--text3);letter-spacing:0.06em;margin-bottom:6px}
+.book-form select,.book-form input,.book-form textarea{width:100%;padding:11px 14px;background:var(--navy);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:14px;font-family:'Inter',sans-serif;outline:none;margin-bottom:14px;transition:border-color 0.2s}
+.book-form select:focus,.book-form input:focus,.book-form textarea:focus{border-color:var(--gold)}
+.book-form select option{background:var(--navy2)}
+.book-form textarea{resize:none;height:70px}
+.btn-book-main{width:100%;padding:14px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all 0.2s;margin-bottom:10px}
+.btn-book-main:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-whatsapp{width:100%;padding:12px;background:rgba(37,211,102,0.12);color:#25d366;border:1px solid rgba(37,211,102,0.25);border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-whatsapp:hover{background:rgba(37,211,102,0.2)}
+.book-note{font-size:11px;color:var(--text3);text-align:center;margin-top:12px;line-height:1.6}
+
+/* ── TRUST BADGES ── */
+.trust-badges{display:flex;flex-direction:column;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid var(--border2)}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text2)}
+.trust-icon{font-size:16px;flex-shrink:0}
+
+/* ── ACTIVITY TIMELINE ── */
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border2)}
+.tl-item:last-child{border:none}
+.tl-dot-wrap{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);margin-top:4px;flex-shrink:0}
+.tl-line{width:1px;flex:1;background:var(--border2);margin-top:6px}
+.tl-content{flex:1}
+.tl-title{font-size:14px;font-weight:500;margin-bottom:3px}
+.tl-sub{font-size:12px;color:var(--text3)}
+.tl-time{font-size:11px;color:var(--text3);text-align:right;flex-shrink:0;margin-top:4px}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:28px;max-width:420px;width:100%;animation:modalIn 0.3s ease}
+@keyframes modalIn{from{transform:scale(0.9);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--text2);margin-bottom:20px;line-height:1.6}
+.modal-close{background:none;border:none;color:var(--text3);font-size:22px;cursor:pointer;float:right;margin-top:-4px}
+.modal-close:hover{color:var(--text)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy2);border:1px solid var(--border);color:var(--text);padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;z-index:9999;opacity:0;transition:all 0.4s;pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .profile-hero-inner{grid-template-columns:auto 1fr;gap:20px}
+  .profile-stats{grid-column:1/-1;grid-template-columns:repeat(4,1fr)}
+  .main-wrap{grid-template-columns:1fr}
+  .booking-card{position:static}
+  .services-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .profile-hero-inner{grid-template-columns:1fr;text-align:center}
+  .profile-avatar-wrap{margin:0 auto}
+  .profile-meta{justify-content:center}
+  .profile-tags{justify-content:center}
+  .profile-stats{grid-template-columns:repeat(2,1fr)}
+  .rating-overview{flex-direction:column;gap:20px}
+  .work-photos{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="K.S. Enterprises" onerror="this.style.display='none'">
+    <div class="nav-logo-text">K.S.<span>Enterprises</span></div>
+  </a>
+  <div class="nav-right">
+    <a href="workers.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Workers
+    </a>
+    <a href="#book-section" class="nav-book-btn">Book Now</a>
+  </div>
+</nav>
+
+<!-- PROFILE HERO -->
+<div class="profile-hero">
+  <div class="profile-hero-inner">
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar" id="hero-avatar">RS</div>
+      <div class="status-badge status-online" id="hero-status-dot"></div>
+    </div>
+    <div class="profile-main">
+      <h1 id="hero-name">Rahul Sharma</h1>
+      <div class="profile-title" id="hero-title">Senior Electrician</div>
+      <div class="profile-meta">
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span id="hero-rating">4.9 rating</span>
+        </div>
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="hero-exp">8 years experience</span>
+        </div>
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span id="hero-area">Airoli, Ghansoli, Rabale</span>
+        </div>
+        <div class="meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.18 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span id="hero-response">Avg response: 8 mins</span>
+        </div>
+      </div>
+      <div class="profile-tags" id="hero-skills">
+        <span class="tag">Household Wiring</span>
+        <span class="tag">MCB Fitting</span>
+        <span class="tag">Switchboard</span>
+        <span class="tag">Meter Cabin</span>
+        <span class="tag">Lighting</span>
+        <span class="tag">AC Points</span>
+      </div>
+    </div>
+    <div class="profile-stats">
+      <div class="stat-box"><div class="stat-num" id="s-jobs">312</div><div class="stat-lbl">JOBS DONE</div></div>
+      <div class="stat-box"><div class="stat-num" id="s-rating">4.9★</div><div class="stat-lbl">RATING</div></div>
+      <div class="stat-box"><div class="stat-num" id="s-exp">8yr</div><div class="stat-lbl">EXPERIENCE</div></div>
+      <div class="stat-box"><div class="stat-num" id="s-repeat">84%</div><div class="stat-lbl">REPEAT CLIENTS</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-wrap">
+  <div class="left-col">
+
+    <!-- RATING OVERVIEW -->
+    <div class="section-card">
+      <div class="section-title">Ratings & Reviews</div>
+      <div class="rating-overview">
+        <div class="rating-big">
+          <div class="rating-num" id="rating-big">4.9</div>
+          <div class="stars-row" id="big-stars"></div>
+          <div class="rating-count" id="rating-count">128 reviews</div>
+        </div>
+        <div class="rating-bars" id="rating-bars"></div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="section-card">
+      <div class="section-title">What Customers Say</div>
+      <div class="review-filters">
+        <button class="rf-btn active" onclick="filterReviews('all',this)">All Reviews</button>
+        <button class="rf-btn" onclick="filterReviews(5,this)">5 Star</button>
+        <button class="rf-btn" onclick="filterReviews(4,this)">4 Star</button>
+        <button class="rf-btn" onclick="filterReviews(3,this)">3 Star</button>
+      </div>
+      <div id="reviews-list"></div>
+      <button onclick="loadMoreReviews()" id="load-more-btn" style="width:100%;padding:12px;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--text2);font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;margin-top:16px;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border2)'">Load more reviews</button>
+    </div>
+
+    <!-- SERVICES OFFERED -->
+    <div class="section-card">
+      <div class="section-title">Services Offered</div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+
+    <!-- AREAS COVERED -->
+    <div class="section-card">
+      <div class="section-title">Areas Covered</div>
+      <div class="areas-list" id="areas-list"></div>
+    </div>
+
+    <!-- WORK PHOTOS -->
+    <div class="section-card">
+      <div class="section-title">Work Photos</div>
+      <div class="work-photos" id="work-photos"></div>
+    </div>
+
+    <!-- RECENT ACTIVITY -->
+    <div class="section-card">
+      <div class="section-title">Recent Activity</div>
+      <div class="timeline" id="activity-timeline"></div>
+    </div>
+
+  </div>
+
+  <!-- BOOKING SIDEBAR -->
+  <div id="book-section">
+    <div class="booking-card">
+      <div class="booking-status online" id="book-status">
+        <div class="status-dot dot-green"></div>
+        Available Now — Usually responds in 8 mins
+      </div>
+      <div class="book-rate">
+        <div class="rate-label">LABOUR RATE</div>
+        <div class="rate-val">₹400 <span style="font-size:14px;font-weight:400;color:var(--text3)">per point</span></div>
+        <div class="rate-note">Material charges extra · 40% advance to confirm</div>
+      </div>
+      <div class="book-form">
+        <label>SELECT SERVICE</label>
+        <select id="book-service">
+          <option value="">— Choose a service —</option>
+          <option>Household Wiring</option>
+          <option>MCB / Patti Fitting</option>
+          <option>Switchboard Repair / Fitting</option>
+          <option>Meter Cabin Fitting</option>
+          <option>Lighting Installation</option>
+          <option>AC Point Wiring</option>
+          <option>Geyser Point</option>
+          <option>Fan Fitting / Repair</option>
+          <option>CCTV Wiring</option>
+          <option>Full Consol Fitting</option>
+          <option>Other / Not Listed</option>
+        </select>
+        <label>YOUR NAME</label>
+        <input type="text" id="book-name" placeholder="Enter your full name">
+        <label>PHONE NUMBER</label>
+        <input type="tel" id="book-phone" placeholder="+91 XXXXX XXXXX">
+        <label>YOUR AREA / ADDRESS</label>
+        <input type="text" id="book-address" placeholder="e.g. Ghansoli Sector 7">
+        <label>PREFERRED DATE & TIME</label>
+        <input type="datetime-local" id="book-datetime">
+        <label>ADDITIONAL NOTES (optional)</label>
+        <textarea id="book-notes" placeholder="Describe the work briefly..."></textarea>
+        <button class="btn-book-main" onclick="submitBooking()">Confirm Booking</button>
+        <button class="btn-whatsapp" onclick="bookWhatsApp()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Book via WhatsApp
+        </button>
+        <div class="book-note">Booking confirmed within 15 minutes · 40% advance required · Material charges billed separately</div>
+      </div>
+      <div class="trust-badges">
+        <div class="trust-item"><span class="trust-icon">✅</span> Verified by K.S. Enterprises</div>
+        <div class="trust-item"><span class="trust-icon">🪪</span> ID & document checked</div>
+        <div class="trust-item"><span class="trust-icon">⭐</span> Top rated worker in your area</div>
+        <div class="trust-item"><span class="trust-icon">🔒</span> Secure booking — cancel anytime</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING SUCCESS MODAL -->
+<div class="modal-overlay" id="success-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div style="font-size:52px;margin-bottom:16px;text-align:center">✅</div>
+    <div class="modal-title" style="text-align:center">Booking Confirmed!</div>
+    <div class="modal-sub" style="text-align:center">
+      <span id="modal-worker-name">Rahul Sharma</span> has been notified.<br>
+      You'll receive a WhatsApp confirmation within 15 minutes.<br><br>
+      <strong style="color:var(--gold)">Remember: 40% advance required to confirm the job.</strong>
+    </div>
+    <button onclick="closeModal()" style="width:100%;padding:13px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;cursor:pointer">Done</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── WORKER DATA (loaded from URL param or default) ──
+const workers = {
+  1: {
+    initials:'RS',name:'Rahul Sharma',title:'Senior Electrician',
+    rating:4.9,reviews:128,exp:'8 years',jobs:312,repeat:84,response:'8 mins',
+    status:'online',phone:'9022365661',
+    areas:['Airoli','Ghansoli','Rabale','Koparkhairane'],
+    skills:['Household Wiring','MCB Fitting','Switchboard','Meter Cabin','Lighting','AC Points','Geyser'],
+    services:[
+      {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
+      {icon:'🔌',name:'MCB / Patti Fitting',price:'₹400/pt'},
+      {icon:'💡',name:'Lighting Installation',price:'₹400/pt'},
+      {icon:'🔧',name:'Switchboard Repair',price:'₹400/pt'},
+      {icon:'📦',name:'Meter Cabin Fitting',price:'₹400/pt'},
+      {icon:'❄️',name:'AC Point Wiring',price:'₹400/pt'},
+      {icon:'🚿',name:'Geyser Point',price:'₹400/pt'},
+      {icon:'🎥',name:'CCTV Wiring',price:'Extra'},
+    ],
+    ratingDist:[{stars:5,count:94},{stars:4,count:22},{stars:3,count:8},{stars:2,count:3},{stars:1,count:1}],
+    color:'#f5a623'
+  },
+  2: {
+    initials:'AK',name:'Ajay Kumar',title:'Electrician & AC Technician',
+    rating:4.7,reviews:89,exp:'5 years',jobs:198,repeat:76,response:'12 mins',
+    status:'online',phone:'8767569788',
+    areas:['Vashi','Nerul','Sanpada','Turbhe'],
+    skills:['AC Fitting','Fan Repair','Wiring','Switchboard'],
+    services:[
+      {icon:'❄️',name:'AC Fitting & Repair',price:'₹400/pt'},
+      {icon:'🌀',name:'Fan Repair / Fitting',price:'₹400/pt'},
+      {icon:'⚡',name:'Household Wiring',price:'₹400/pt'},
+      {icon:'🔧',name:'Switchboard Work',price:'₹400/pt'},
+    ],
+    ratingDist:[{stars:5,count:62},{stars:4,count:18},{stars:3,count:7},{stars:2,count:1},{stars:1,count:1}],
+    color:'#3b82f6'
+  },
+};
+
+// Get worker ID from URL
+const params = new URLSearchParams(window.location.search);
+const wid = params.get('id') || 1;
+const w = workers[wid] || workers[1];
+
+// ── LOAD PROFILE ──
+function loadProfile(){
+  document.title = w.name + ' — K.S. Enterprises';
+  document.getElementById('hero-avatar').textContent = w.initials;
+  document.getElementById('hero-avatar').style.background = `linear-gradient(135deg,${w.color},${darken(w.color)})`;
+  document.getElementById('hero-name').textContent = w.name;
+  document.getElementById('hero-title').textContent = w.title;
+  document.getElementById('hero-rating').textContent = w.rating + ' rating';
+  document.getElementById('hero-exp').textContent = w.exp + ' experience';
+  document.getElementById('hero-area').textContent = w.areas.join(', ');
+  document.getElementById('hero-response').textContent = 'Avg response: ' + w.response;
+
+  // Skills tags
+  document.getElementById('hero-skills').innerHTML = w.skills.map(s => `<span class="tag">${s}</span>`).join('');
+
+  // Stats
+  document.getElementById('s-jobs').textContent = w.jobs;
+  document.getElementById('s-rating').textContent = w.rating + '★';
+  document.getElementById('s-exp').textContent = w.exp.replace(' years','yr').replace(' year','yr');
+  document.getElementById('s-repeat').textContent = w.repeat + '%';
+
+  // Status
+  const sdot = document.getElementById('hero-status-dot');
+  const bstatus = document.getElementById('book-status');
+  if(w.status === 'busy'){
+    sdot.className = 'status-badge status-busy';
+    bstatus.className = 'booking-status busy';
+    bstatus.innerHTML = '<div class="status-dot dot-amber"></div> Currently Busy — Available Soon';
+  } else if(w.status === 'offline'){
+    sdot.className = 'status-badge status-offline';
+    bstatus.className = 'booking-status';
+    bstatus.style.background = 'var(--border2)';
+    bstatus.style.color = 'var(--text2)';
+    bstatus.style.border = '1px solid var(--border2)';
+    bstatus.innerHTML = '<div class="status-dot" style="background:var(--text3)"></div> Offline — Will respond when back online';
+  }
+
+  // Rating big
+  document.getElementById('rating-big').textContent = w.rating.toFixed(1);
+  document.getElementById('rating-count').textContent = w.reviews + ' reviews';
+  renderBigStars(w.rating);
+  renderRatingBars();
+  renderReviews();
+  renderServices();
+  renderAreas();
+  renderWorkPhotos();
+  renderTimeline();
+  document.getElementById('modal-worker-name').textContent = w.name;
+}
+
+function darken(hex){
+  const c=parseInt(hex.slice(1),16);
+  return '#'+[c>>16,c>>8&255,c&255].map(x=>Math.max(0,x-60).toString(16).padStart(2,'0')).join('');
+}
+
+// ── STARS ──
+function renderBigStars(r){
+  const el = document.getElementById('big-stars');
+  let html = '';
+  for(let i=1;i<=5;i++){
+    if(r >= i) html += '<span class="star filled">★</span>';
+    else if(r >= i-0.5) html += '<span class="star half">★</span>';
+    else html += '<span class="star empty">★</span>';
+  }
+  el.innerHTML = html;
+}
+
+// ── RATING BARS ──
+function renderRatingBars(){
+  const el = document.getElementById('rating-bars');
+  const total = w.ratingDist.reduce((s,r)=>s+r.count,0);
+  el.innerHTML = w.ratingDist.map(r => `
+    <div class="bar-row">
+      <div class="bar-label">${r.stars}★</div>
+      <div class="bar-track"><div class="bar-fill" style="width:0%" data-pct="${Math.round(r.count/total*100)}"></div></div>
+      <div class="bar-count">${r.count}</div>
+    </div>
+  `).join('');
+  setTimeout(()=>el.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.pct+'%'),100);
+}
+
+// ── REVIEWS DATA ──
+const allReviews = [
+  {name:'Priya Sharma',area:'Airoli',stars:5,text:'Rahul did an excellent job fixing our complete house wiring. Very professional, clean work, and finished on time. Will definitely call again!',service:'Household Wiring',date:'3 days ago',av:'PS',avColor:'#a855f7'},
+  {name:'Deepak Nair',area:'Ghansoli',stars:5,text:'Fixed our meter cabin and all MCBs in one visit. Explained everything clearly. Highly recommend for any electrical work in Navi Mumbai.',service:'Meter Cabin Fitting',date:'1 week ago',av:'DN',avColor:'#3b82f6'},
+  {name:'Sunita Patil',area:'Rabale',stars:5,text:'Fitted 3 AC points and repaired 2 switches. Super fast response, came within 30 minutes of calling. Price was also fair.',service:'AC Point Wiring',date:'2 weeks ago',av:'SP',avColor:'#22c55e'},
+  {name:'Arun Mehta',area:'Airoli',stars:4,text:'Good work overall. MCB and patti fitting done properly. Slight delay in arrival but the quality of work was great.',service:'MCB / Patti Fitting',date:'3 weeks ago',av:'AM',avColor:'#f59e0b'},
+  {name:'Kavita Joshi',area:'Koparkhairane',stars:5,text:'Complete rewiring of our 2BHK done perfectly. Rahul is very knowledgeable and hardworking. 10/10 would recommend!',service:'Household Wiring',date:'1 month ago',av:'KJ',avColor:'#ec4899'},
+  {name:'Sanjay Rane',area:'Ghansoli',stars:4,text:'Switchboard replacement done neatly. No mess left behind. Would have been 5 stars but took one extra day.',service:'Switchboard Repair',date:'1 month ago',av:'SR',avColor:'#06b6d4'},
+  {name:'Meera Desai',area:'Airoli',stars:5,text:'Excellent geyser point work. On time, professional, and the wiring looks very neat. K.S. Enterprises is my go-to for electrical work.',service:'Geyser Point',date:'2 months ago',av:'MD',avColor:'#8b5cf6'},
+  {name:'Vinod Shah',area:'Rabale',stars:3,text:'Work was okay. The wiring job took longer than expected and price was slightly more than quoted but the end result is good.',service:'Household Wiring',date:'2 months ago',av:'VS',avColor:'#f97316'},
+];
+
+let showingReviews = 4;
+let currentFilter = 'all';
+
+function renderReviews(){
+  const filtered = currentFilter === 'all' ? allReviews : allReviews.filter(r=>r.stars===currentFilter);
+  const shown = filtered.slice(0, showingReviews);
+  document.getElementById('reviews-list').innerHTML = shown.map(r=>`
+    <div class="review-card">
+      <div class="review-top">
+        <div class="reviewer-info">
+          <div class="reviewer-av" style="background:${r.avColor}20;color:${r.avColor}">${r.av}</div>
+          <div>
+            <div class="reviewer-name">${r.name}</div>
+            <div class="reviewer-area">📍 ${r.area}</div>
+          </div>
+        </div>
+        <div>
+          <div class="review-rating">${'★'.repeat(r.stars)}<span style="color:var(--text3)">${'★'.repeat(5-r.stars)}</span></div>
+          <div class="review-date">${r.date}</div>
+        </div>
+      </div>
+      <div class="review-text">${r.text}</div>
+      <span class="review-service-tag">🔧 ${r.service}</span>
+    </div>
+  `).join('');
+  document.getElementById('load-more-btn').style.display = shown.length >= filtered.length ? 'none' : 'block';
+}
+
+function filterReviews(f,btn){
+  currentFilter = f;
+  showingReviews = 4;
+  document.querySelectorAll('.rf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderReviews();
+}
+
+function loadMoreReviews(){
+  showingReviews += 4;
+  renderReviews();
+}
+
+// ── SERVICES ──
+function renderServices(){
+  document.getElementById('services-grid').innerHTML = w.services.map(s=>`
+    <div class="service-item">
+      <span class="service-icon">${s.icon}</span>
+      <span>${s.name}</span>
+      <span class="service-price">${s.price}</span>
+    </div>
+  `).join('');
+}
+
+// ── AREAS ──
+function renderAreas(){
+  document.getElementById('areas-list').innerHTML = w.areas.map(a=>`
+    <div class="area-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      ${a}
+    </div>
+  `).join('');
+}
+
+// ── WORK PHOTOS (Placeholders with emoji) ──
+function renderWorkPhotos(){
+  const photos = ['⚡','🔌','💡','🔧','📦','🔩'];
+  document.getElementById('work-photos').innerHTML = photos.map((e,i)=>`
+    <div class="work-photo" onclick="showToast('Photo ${i+1} of ${photos.length}')" title="Click to view">
+      <span style="opacity:0.3;font-size:36px">${e}</span>
+    </div>
+  `).join('');
+}
+
+// ── ACTIVITY TIMELINE ──
+function renderTimeline(){
+  const activities = [
+    {title:'Job completed — Household Wiring',sub:'2BHK full wiring, Airoli Sector 4',time:'Today 2:30 PM'},
+    {title:'Job completed — MCB Fitting',sub:'Meter cabin + 4 MCBs, Ghansoli',time:'Yesterday 11 AM'},
+    {title:'Job completed — AC Point Wiring',sub:'2 AC points + 1 geyser point, Rabale',time:'2 days ago'},
+    {title:'Review received — 5 stars',sub:'Kavita Joshi: "Excellent rewiring work!"',time:'3 days ago'},
+    {title:'Job completed — Switchboard Repair',sub:'3 switchboards replaced, Koparkhairane',time:'4 days ago'},
+  ];
+  document.getElementById('activity-timeline').innerHTML = activities.map((a,i)=>`
+    <div class="tl-item">
+      <div class="tl-dot-wrap"><div class="tl-dot"></div>${i<activities.length-1?'<div class="tl-line"></div>':''}</div>
+      <div class="tl-content"><div class="tl-title">${a.title}</div><div class="tl-sub">${a.sub}</div></div>
+      <div class="tl-time">${a.time}</div>
+    </div>
+  `).join('');
+}
+
+// ── BOOKING ──
+function submitBooking(){
+  const service = document.getElementById('book-service').value;
+  const name = document.getElementById('book-name').value.trim();
+  const phone = document.getElementById('book-phone').value.trim();
+  const address = document.getElementById('book-address').value.trim();
+  if(!service){showToast('Please select a service'); return;}
+  if(!name){showToast('Please enter your name'); return;}
+  if(!phone){showToast('Please enter your phone number'); return;}
+  if(!address){showToast('Please enter your area / address'); return;}
+  document.getElementById('success-modal').classList.add('open');
+}
+
+function bookWhatsApp(){
+  const service = document.getElementById('book-service').value || 'Not selected';
+  const name = document.getElementById('book-name').value || 'Customer';
+  const address = document.getElementById('book-address').value || 'Not provided';
+  const notes = document.getElementById('book-notes').value || '';
+  const msg = `Hi K.S. Enterprises!\n\nI want to book *${w.name}* for:\n\n📋 Service: ${service}\n👤 Name: ${name}\n📍 Area: ${address}\n📝 Notes: ${notes || 'None'}\n\nPlease confirm availability. Thank you!`;
+  window.open('https://wa.me/918454886933?text='+encodeURIComponent(msg),'_blank');
+}
+
+function closeModal(){document.getElementById('success-modal').classList.remove('open')}
+
+// ── TOAST ──
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── INIT ──
+loadProfile();
+
+// Close modal on backdrop click
+document.getElementById('success-modal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+</script>
+</body>
+</html>
