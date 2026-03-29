@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Browse Workers — K.S. Enterprises</title>
+<meta name="description" content="Find verified electricians and home service workers near you in Navi Mumbai. See live availability, ratings and book instantly."/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#FACC15;--gd:#EAB308;--gg:rgba(250,204,21,0.15);--wa:#25D366;--r:14px;--tr:0.2s ease;}
+[data-theme=dark]{--bg:#090D19;--bg2:#0F1525;--bg3:#161D30;--bg4:#1E2740;--bd:rgba(255,255,255,0.07);--bdg:rgba(250,204,21,0.22);--tx:#F0F4FF;--tx2:#94A3B8;--tx3:#5A6A85;--card:#0F1525;--nav:rgba(9,13,25,0.92);}
+[data-theme=light]{--bg:#F5F7FF;--bg2:#fff;--bg3:#EDF0FB;--bg4:#E2E8F0;--bd:rgba(0,0,0,0.08);--bdg:rgba(202,138,4,0.3);--tx:#0F172A;--tx2:#475569;--tx3:#94A3B8;--card:#fff;--nav:rgba(245,247,255,0.95);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:64px;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:var(--nav);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdg);}
+.nlogo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.nbox{width:36px;height:36px;border-radius:8px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.ntxt{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);}
+.ntxt span{color:var(--gold);}
+.nlinks{display:flex;align-items:center;gap:2px;}
+.nlink{padding:8px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--tx2);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:all var(--tr);}
+.nlink:hover{color:var(--tx);background:var(--bg3);}
+.nlink.act{color:var(--gold);}
+.nright{display:flex;align-items:center;gap:10px;}
+.tbtn{width:38px;height:38px;border-radius:8px;border:1px solid var(--bd);background:var(--bg3);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ncta{padding:9px 18px;border-radius:8px;background:var(--gold);color:#090D19;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.ncta:hover{background:var(--gd);}
+.hbtn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.hbtn span{display:block;width:20px;height:2px;background:var(--tx);border-radius:2px;}
+.mmenu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--bd);padding:12px 20px 18px;z-index:98;flex-direction:column;gap:4px;}
+.mmenu.on{display:flex;}
+.mlink{padding:11px 12px;border-radius:9px;font-size:15px;font-weight:500;color:var(--tx2);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;text-align:left;}
+.mlink:hover{background:var(--bg3);color:var(--tx);}
+
+/* PAGE HEADER */
+.phead{padding:108px 28px 52px;position:relative;overflow:hidden;}
+.phead-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 40%,rgba(250,204,21,0.06) 0%,transparent 70%);pointer-events:none;}
+.phead-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.bread{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--tx3);margin-bottom:18px;}
+.bread a{cursor:pointer;transition:color var(--tr);}
+.bread a:hover{color:var(--gold);}
+.ptit{font-family:'Syne',sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.8px;color:var(--tx);margin-bottom:12px;line-height:1.1;}
+.ptit span{color:var(--gold);}
+.psub{font-size:16px;color:var(--tx2);line-height:1.7;max-width:500px;}
+
+/* LIVE INDICATOR */
+.live-bar{background:var(--bg3);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:14px 28px;}
+.live-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.live-left{display:flex;align-items:center;gap:16px;}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#4ADE80;animation:pd 1.8s ease-in-out infinite;flex-shrink:0;}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.7);}}
+.live-txt{font-size:14px;font-weight:600;color:var(--tx2);}
+.live-txt strong{color:var(--tx);}
+.live-time{font-size:13px;color:var(--tx3);}
+
+/* FILTER AREA */
+.filters{background:var(--bg2);border-bottom:1px solid var(--bd);padding:0 28px;position:sticky;top:64px;z-index:90;}
+.filters-inner{max-width:1100px;margin:0 auto;padding:14px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.filter-group{display:flex;align-items:center;gap:7px;}
+.filter-label{font-size:12px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:0.8px;white-space:nowrap;}
+.fchips{display:flex;gap:6px;flex-wrap:wrap;}
+.fchip{padding:6px 14px;border-radius:100px;border:1.5px solid var(--bd);background:transparent;font-size:13px;font-weight:500;color:var(--tx2);cursor:pointer;transition:all var(--tr);white-space:nowrap;font-family:'DM Sans',sans-serif;}
+.fchip:hover{border-color:var(--bdg);color:var(--gold);}
+.fchip.on{background:var(--gold);border-color:var(--gold);color:#090D19;font-weight:700;}
+.fdiv{width:1px;height:24px;background:var(--bd);}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:40px 28px 80px;}
+
+/* RESULT COUNT */
+.rcount{font-size:14px;color:var(--tx2);margin-bottom:24px;}
+.rcount strong{color:var(--tx);}
+
+/* WORKERS GRID */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+
+/* WORKER CARD */
+.wcard{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:24px;cursor:pointer;transition:border-color var(--tr),transform 0.2s;position:relative;}
+.wcard:hover{border-color:var(--bdg);transform:translateY(-3px);}
+.wcard.offline{opacity:0.65;}
+
+/* AVAILABILITY BADGE */
+.avail{position:absolute;top:18px;right:18px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:100px;}
+.avail.on{background:rgba(34,197,94,0.15);color:#4ADE80;}
+.avail.off{background:var(--bg3);color:var(--tx3);}
+.avail.busy{background:rgba(251,146,60,0.15);color:#FB923C;}
+.avdot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+.avdot.pulse{animation:pd 1.8s ease-in-out infinite;}
+
+/* WORKER TOP ROW */
+.wtop{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-right:80px;}
+.wavatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#090D19;flex-shrink:0;}
+.wname{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:2px;}
+.wrole{font-size:13px;color:var(--tx2);}
+
+/* RATING */
+.wrating{display:flex;align-items:center;gap:5px;margin-bottom:10px;}
+.wstars{display:flex;gap:1px;}
+.wstar{font-size:14px;color:var(--gold);}
+.wstar.empty{color:var(--bg4);}
+.wrcount{font-size:13px;color:var(--tx2);}
+
+/* LOCATION */
+.wloc{font-size:13px;color:var(--tx2);margin-bottom:12px;display:flex;align-items:center;gap:5px;}
+.wloc-icon{font-size:13px;}
+
+/* SKILL TAGS */
+.wtags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.wtag{padding:3px 10px;border-radius:100px;background:var(--bg3);border:1px solid var(--bd);font-size:11px;font-weight:500;color:var(--tx2);}
+
+/* EXP & JOBS */
+.wstats{display:flex;gap:16px;margin-bottom:18px;padding:12px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);}
+.wstat{text-align:center;flex:1;}
+.wstat-num{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--tx);}
+.wstat-lbl{font-size:11px;color:var(--tx3);margin-top:2px;}
+
+/* BUTTONS */
+.wbtn{width:100%;padding:12px;border-radius:10px;background:var(--gold);color:#090D19;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background var(--tr);}
+.wbtn:hover{background:var(--gd);}
+.wbtn.disabled{background:var(--bg3);color:var(--tx3);cursor:not-allowed;}
+
+/* RESPONSE TIME TAG */
+.wresponse{font-size:12px;color:var(--tx3);text-align:center;margin-top:8px;}
+.wresponse strong{color:#4ADE80;}
+
+/* NO RESULTS */
+.noresult{text-align:center;padding:60px 20px;color:var(--tx2);}
+.noresult-icon{font-size:48px;margin-bottom:16px;}
+.noresult-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--tx);margin-bottom:8px;}
+
+/* JOIN BANNER */
+.joinbanner{background:var(--bg3);border:1px solid var(--bdg);border-radius:var(--r);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:48px;}
+.jt{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--tx);margin-bottom:6px;}
+.jt span{color:var(--gold);}
+.jd{font-size:14px;color:var(--tx2);line-height:1.7;}
+.jbtns{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;}
+.btn-gold{padding:12px 22px;border-radius:9px;background:var(--gold);color:#090D19;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.btn-gold:hover{background:var(--gd);}
+.btn-wa{padding:12px 22px;border-radius:9px;background:var(--wa);color:#fff;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:24px;right:24px;z-index:90;width:52px;height:52px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 20px rgba(37,211,102,0.4);text-decoration:none;animation:wab 5s ease-in-out infinite;}
+@keyframes wab{0%,90%,100%{transform:translateY(0);}93%{transform:translateY(-7px);}96%{transform:translateY(-3px);}}
+.waf:hover{animation:none;transform:scale(1.1);}
+
+/* FOOTER */
+.footer{background:var(--bg2);border-top:1px solid var(--bd);padding:32px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.flogo{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--tx);}
+.flogo span{color:var(--gold);}
+.flinks{display:flex;gap:18px;flex-wrap:wrap;}
+.flink{font-size:13px;color:var(--tx3);cursor:pointer;}
+.flink:hover{color:var(--gold);}
+.fcopy{font-size:13px;color:var(--tx3);}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(20px);transition:opacity .45s ease,transform .45s ease;}
+.fade.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){.wgrid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){
+  .wgrid{grid-template-columns:1fr;}
+  .nlinks{display:none;} .hbtn{display:flex;}
+  .ptit{font-size:30px;}
+  .joinbanner{flex-direction:column;}
+  .main{padding:32px 16px 60px;}
+  .phead{padding:96px 16px 40px;}
+  .filters{padding:0 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nlogo" onclick="location.href='index.html'">
+    <div class="nbox">⚡</div>
+    <span class="ntxt">K.S. <span>Enterprises</span></span>
+  </div>
+  <div class="nlinks">
+    <button class="nlink" onclick="location.href='services.html'">Services</button>
+    <button class="nlink act">Workers</button>
+    <button class="nlink" onclick="location.href='index.html#areas'">Areas</button>
+    <button class="nlink" onclick="location.href='index.html#about'">About</button>
+  </div>
+  <div class="nright">
+    <button class="tbtn" id="tbtn">🌙</button>
+    <button class="ncta" onclick="location.href='book.html'">Book Now →</button>
+  </div>
+  <button class="hbtn" id="hbtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mmenu" id="mmenu">
+  <button class="mlink" onclick="location.href='services.html'">Services</button>
+  <button class="mlink" onclick="location.href='workers.html'">Browse Workers</button>
+  <button class="mlink" onclick="location.href='index.html#areas'">Areas</button>
+  <button class="mlink" onclick="location.href='book.html'">Book Now →</button>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="phead">
+  <div class="phead-bg"></div>
+  <div class="phead-inner">
+    <div class="bread">
+      <a onclick="location.href='index.html'">Home</a>
+      <span>›</span>
+      <span>Browse Workers</span>
+    </div>
+    <h1 class="ptit">Verified workers — <span>available now</span></h1>
+    <p class="psub">Every worker is manually verified before listing. Check live availability, read real reviews, and book the right person in 2 minutes.</p>
+  </div>
+</div>
+
+<!-- LIVE BAR -->
+<div class="live-bar">
+  <div class="live-inner">
+    <div class="live-left">
+      <div class="live-dot"></div>
+      <div class="live-txt"><strong id="onlineCount">4</strong> workers online right now in Navi Mumbai</div>
+    </div>
+    <div class="live-time" id="liveTime">Updated just now</div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="filters-inner">
+    <div class="filter-group">
+      <span class="filter-label">Service</span>
+      <div class="fchips" id="svcFilter">
+        <button class="fchip on" data-v="all">All</button>
+        <button class="fchip" data-v="Electrician">Electrician</button>
+        <button class="fchip" data-v="Plumber">Plumber</button>
+        <button class="fchip" data-v="AC Technician">AC Tech</button>
+      </div>
+    </div>
+    <div class="fdiv"></div>
+    <div class="filter-group">
+      <span class="filter-label">Area</span>
+      <div class="fchips" id="areaFilter">
+        <button class="fchip on" data-v="all">All Areas</button>
+        <button class="fchip" data-v="Vashi">Vashi</button>
+        <button class="fchip" data-v="Nerul">Nerul</button>
+        <button class="fchip" data-v="Kharghar">Kharghar</button>
+        <button class="fchip" data-v="Belapur">Belapur</button>
+        <button class="fchip" data-v="Panvel">Panvel</button>
+        <button class="fchip" data-v="Airoli">Airoli</button>
+      </div>
+    </div>
+    <div class="fdiv"></div>
+    <div class="filter-group">
+      <span class="filter-label">Status</span>
+      <div class="fchips" id="statusFilter">
+        <button class="fchip on" data-v="all">All</button>
+        <button class="fchip" data-v="online">Online Only</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="rcount">Showing <strong id="showCount">7</strong> workers in Navi Mumbai</div>
+
+  <div class="wgrid" id="wgrid">
+
+    <!-- WORKER 1 -->
+    <div class="wcard fade" data-svc="Electrician" data-area="Vashi" data-status="online" onclick="location.href='worker-profile.html?id=1'">
+      <div class="avail on"><span class="avdot pulse"></span> Online</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#FACC15,#F59E0B);">RS</div>
+        <div>
+          <div class="wname">Ravi Shinde</div>
+          <div class="wrole">Electrician · 9 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span>
+        </div>
+        <span class="wrcount">4.9 · 87 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Vashi, Nerul, Sanpada</div>
+      <div class="wtags">
+        <span class="wtag">Wiring</span><span class="wtag">Fan Repair</span><span class="wtag">MCB</span><span class="wtag">AC Fitting</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">9</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">340+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.9★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn" onclick="event.stopPropagation();location.href='book.html?worker=ravi-shinde&service=Electrician'">Book Ravi →</button>
+      <div class="wresponse">Avg response <strong>&lt; 3 min</strong></div>
+    </div>
+
+    <!-- WORKER 2 -->
+    <div class="wcard fade" data-svc="Electrician" data-area="Nerul" data-status="online" onclick="location.href='worker-profile.html?id=2'">
+      <div class="avail on"><span class="avdot pulse"></span> Online</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#60A5FA,#3B82F6);">MK</div>
+        <div>
+          <div class="wname">Mahesh Kamble</div>
+          <div class="wrole">Electrician · 6 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span>
+        </div>
+        <span class="wrcount">4.8 · 62 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Nerul, Belapur, Kharghar</div>
+      <div class="wtags">
+        <span class="wtag">Switchboard</span><span class="wtag">Light Fitting</span><span class="wtag">CCTV</span><span class="wtag">Wiring</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">6</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">210+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.8★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn" onclick="event.stopPropagation();location.href='book.html?worker=mahesh-kamble&service=Electrician'">Book Mahesh →</button>
+      <div class="wresponse">Avg response <strong>&lt; 5 min</strong></div>
+    </div>
+
+    <!-- WORKER 3 -->
+    <div class="wcard fade offline" data-svc="Electrician" data-area="Panvel" data-status="busy" onclick="location.href='worker-profile.html?id=3'">
+      <div class="avail busy"><span class="avdot"></span> Busy</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#86EFAC,#22C55E);">PJ</div>
+        <div>
+          <div class="wname">Prakash Jadhav</div>
+          <div class="wrole">Electrician · 11 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span>
+        </div>
+        <span class="wrcount">4.9 · 134 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Panvel, Kharghar, Ulwe</div>
+      <div class="wtags">
+        <span class="wtag">New Wiring</span><span class="wtag">MCB</span><span class="wtag">Appliance</span><span class="wtag">Emergency</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">11</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">520+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.9★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn disabled" disabled onclick="event.stopPropagation();">Currently Busy</button>
+      <div class="wresponse">Usually free in <strong>~1 hour</strong></div>
+    </div>
+
+    <!-- WORKER 4 -->
+    <div class="wcard fade" data-svc="Electrician" data-area="Airoli" data-status="online" onclick="location.href='worker-profile.html?id=4'">
+      <div class="avail on"><span class="avdot pulse"></span> Online</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#F9A8D4,#EC4899);">SK</div>
+        <div>
+          <div class="wname">Suresh Kadam</div>
+          <div class="wrole">Electrician · 7 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar empty">★</span>
+        </div>
+        <span class="wrcount">4.6 · 48 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Airoli, Ghansoli, Kopar Khairane</div>
+      <div class="wtags">
+        <span class="wtag">Fan Repair</span><span class="wtag">Switchboard</span><span class="wtag">Light</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">7</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">175+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.6★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn" onclick="event.stopPropagation();location.href='book.html?worker=suresh-kadam&service=Electrician'">Book Suresh →</button>
+      <div class="wresponse">Avg response <strong>&lt; 4 min</strong></div>
+    </div>
+
+    <!-- WORKER 5 - Plumber -->
+    <div class="wcard fade" data-svc="Plumber" data-area="Vashi" data-status="online" onclick="location.href='worker-profile.html?id=5'">
+      <div class="avail on"><span class="avdot pulse"></span> Online</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#67E8F9,#06B6D4);">AM</div>
+        <div>
+          <div class="wname">Anil More</div>
+          <div class="wrole">Plumber · 8 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span>
+        </div>
+        <span class="wrcount">4.8 · 93 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Vashi, Turbhe, Sanpada</div>
+      <div class="wtags">
+        <span class="wtag">Pipe Repair</span><span class="wtag">Leakage</span><span class="wtag">Tap Fitting</span><span class="wtag">Drainage</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">8</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">290+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.8★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn" onclick="event.stopPropagation();location.href='book.html?worker=anil-more&service=Plumber'">Book Anil →</button>
+      <div class="wresponse">Avg response <strong>&lt; 4 min</strong></div>
+    </div>
+
+    <!-- WORKER 6 - AC Tech -->
+    <div class="wcard fade" data-svc="AC Technician" data-area="Kharghar" data-status="online" onclick="location.href='worker-profile.html?id=6'">
+      <div class="avail on"><span class="avdot pulse"></span> Online</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#A5B4FC,#818CF8);">VD</div>
+        <div>
+          <div class="wname">Vikas Dalvi</div>
+          <div class="wrole">AC Technician · 5 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar empty">★</span>
+        </div>
+        <span class="wrcount">4.7 · 38 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Kharghar, Belapur, Seawoods</div>
+      <div class="wtags">
+        <span class="wtag">AC Service</span><span class="wtag">Gas Refill</span><span class="wtag">AC Repair</span><span class="wtag">Installation</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">5</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">140+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.7★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn" onclick="event.stopPropagation();location.href='book.html?worker=vikas-dalvi&service=AC+Technician'">Book Vikas →</button>
+      <div class="wresponse">Avg response <strong>&lt; 6 min</strong></div>
+    </div>
+
+    <!-- WORKER 7 -->
+    <div class="wcard fade offline" data-svc="Electrician" data-area="Belapur" data-status="offline" onclick="location.href='worker-profile.html?id=7'">
+      <div class="avail off"><span class="avdot"></span> Offline</div>
+      <div class="wtop">
+        <div class="wavatar" style="background:linear-gradient(135deg,#FCA5A5,#EF4444);">DP</div>
+        <div>
+          <div class="wname">Dinesh Patil</div>
+          <div class="wrole">Electrician · 4 yrs exp</div>
+        </div>
+      </div>
+      <div class="wrating">
+        <div class="wstars">
+          <span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar">★</span><span class="wstar empty">★</span>
+        </div>
+        <span class="wrcount">4.5 · 29 reviews</span>
+      </div>
+      <div class="wloc"><span class="wloc-icon">📍</span> Belapur, Nerul, Seawoods</div>
+      <div class="wtags">
+        <span class="wtag">Fan Repair</span><span class="wtag">Wiring</span><span class="wtag">Light Fitting</span>
+      </div>
+      <div class="wstats">
+        <div class="wstat"><div class="wstat-num">4</div><div class="wstat-lbl">Yrs Exp</div></div>
+        <div class="wstat"><div class="wstat-num">98+</div><div class="wstat-lbl">Jobs Done</div></div>
+        <div class="wstat"><div class="wstat-num">4.5★</div><div class="wstat-lbl">Rating</div></div>
+      </div>
+      <button class="wbtn disabled" disabled onclick="event.stopPropagation();">Currently Offline</button>
+      <div class="wresponse">Back online <strong>tomorrow 8am</strong></div>
+    </div>
+
+  </div><!-- end wgrid -->
+
+  <!-- NO RESULTS -->
+  <div class="noresult" id="noResult" style="display:none;">
+    <div class="noresult-icon">🔍</div>
+    <div class="noresult-title">No workers found</div>
+    <p>Try changing the filters or check back soon. New workers join every week.</p>
+  </div>
+
+  <!-- JOIN BANNER -->
+  <div class="joinbanner fade">
+    <div>
+      <div class="jt">Are you a worker in <span>Navi Mumbai?</span></div>
+      <p class="jd">Join K.S. Enterprises and get verified job leads on WhatsApp. Small commission only on completed jobs. No upfront cost.</p>
+    </div>
+    <div class="jbtns">
+      <button class="btn-gold" onclick="location.href='worker-register.html'">Apply to Join ⚡</button>
+      <a class="btn-wa" href="https://wa.me/918454886933" target="_blank">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="flogo">K.S. <span>Enterprises</span> · Navi Mumbai</div>
+    <div class="flinks">
+      <span class="flink" onclick="location.href='index.html'">Home</span>
+      <span class="flink" onclick="location.href='services.html'">Services</span>
+      <span class="flink" onclick="location.href='book.html'">Book Now</span>
+      <span class="flink" onclick="location.href='worker-register.html'">Join as Worker</span>
+    </div>
+    <div class="fcopy">© 2025 K.S. Enterprises</div>
+  </div>
+</footer>
+
+<a class="waf" href="https://wa.me/918454886933" target="_blank">💬</a>
+
+<script>
+// THEME
+var root = document.documentElement;
+var tb = document.getElementById('tbtn');
+var th = localStorage.getItem('ks-theme') || 'dark';
+root.setAttribute('data-theme', th);
+tb.textContent = th === 'dark' ? '☀️' : '🌙';
+tb.onclick = function() {
+  var n = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', n);
+  tb.textContent = n === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('ks-theme', n);
+};
+
+// MOBILE MENU
+document.getElementById('hbtn').onclick = function() {
+  document.getElementById('mmenu').classList.toggle('on');
+};
+
+// FILTER STATE
+var activeSvc = 'all';
+var activeArea = 'all';
+var activeStatus = 'all';
+
+// SERVICE FILTER
+document.querySelectorAll('#svcFilter .fchip').forEach(function(btn) {
+  btn.onclick = function() {
+    document.querySelectorAll('#svcFilter .fchip').forEach(function(b) { b.classList.remove('on'); });
+    btn.classList.add('on');
+    activeSvc = btn.getAttribute('data-v');
+    applyFilters();
+  };
+});
+
+// AREA FILTER
+document.querySelectorAll('#areaFilter .fchip').forEach(function(btn) {
+  btn.onclick = function() {
+    document.querySelectorAll('#areaFilter .fchip').forEach(function(b) { b.classList.remove('on'); });
+    btn.classList.add('on');
+    activeArea = btn.getAttribute('data-v');
+    applyFilters();
+  };
+});
+
+// STATUS FILTER
+document.querySelectorAll('#statusFilter .fchip').forEach(function(btn) {
+  btn.onclick = function() {
+    document.querySelectorAll('#statusFilter .fchip').forEach(function(b) { b.classList.remove('on'); });
+    btn.classList.add('on');
+    activeStatus = btn.getAttribute('data-v');
+    applyFilters();
+  };
+});
+
+function applyFilters() {
+  var cards = document.querySelectorAll('.wcard');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var svc = card.getAttribute('data-svc');
+    var area = card.getAttribute('data-area');
+    var status = card.getAttribute('data-status');
+
+    var svcOk = activeSvc === 'all' || svc === activeSvc;
+    var areaOk = activeArea === 'all' || area === activeArea;
+    var statusOk = activeStatus === 'all' || status === 'online';
+
+    if (svcOk && areaOk && statusOk) {
+      card.style.display = 'block';
+      visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  document.getElementById('showCount').textContent = visible;
+  document.getElementById('noResult').style.display = visible === 0 ? 'block' : 'none';
+
+  // Update online count
+  var onlineCards = document.querySelectorAll('.wcard[data-status="online"]');
+  document.getElementById('onlineCount').textContent = onlineCards.length;
+}
+
+// LIVE TIME UPDATE
+function updateTime() {
+  var el = document.getElementById('liveTime');
+  var now = new Date();
+  el.textContent = 'Updated at ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+// FADE IN ON SCROLL
+var fades = document.querySelectorAll('.fade');
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+fades.forEach(function(el) { obs.observe(el); });
+
+// URL PARAM — pre-filter by area or service
+var params = new URLSearchParams(location.search);
+var urlArea = params.get('area');
+var urlSvc = params.get('service');
+if (urlArea) {
+  var aBtn = document.querySelector('#areaFilter .fchip[data-v="' + urlArea + '"]');
+  if (aBtn) { aBtn.click(); }
+}
+if (urlSvc) {
+  var sBtn = document.querySelector('#svcFilter .fchip[data-v="' + urlSvc + '"]');
+  if (sBtn) { sBtn.click(); }
+}
+</script>
+</body>
+</html>
